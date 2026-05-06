@@ -30,7 +30,6 @@ if (typeof document !== 'undefined' && !document.getElementById(KEYFRAMES_ID)) {
 
 interface ProfileCardProps {
   iconUrl?: string;
-  iconUrl?: string;
   grainUrl?: string;
   innerGradient?: string;
   behindGlowEnabled?: boolean;
@@ -278,8 +277,7 @@ const ProfileCardComponent = ({
 
     const handleClick = () => {
       if (!enableMobileTilt || location.protocol !== 'https:') return;
-      // @ts-ignore
-      const anyMotion = window.DeviceMotionEvent;
+      const anyMotion = (window as any).DeviceMotionEvent;
       if (anyMotion && typeof anyMotion.requestPermission === 'function') {
         anyMotion
           .requestPermission()

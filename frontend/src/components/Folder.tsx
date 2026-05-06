@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-const darkenColor = (hex, percent) => {
+const darkenColor = (hex: string, percent: number) => {
   let color = hex.startsWith('#') ? hex.slice(1) : hex;
   if (color.length === 3) {
     color = color
       .split('')
-      .map(c => c + c)
+      .map((c: string) => c + c)
       .join('');
   }
   const num = parseInt(color, 16);
@@ -18,11 +18,11 @@ const darkenColor = (hex, percent) => {
   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
 };
 
-const Folder = ({ color = '#5227FF', size = 1, items = [], className = '' }) => {
+const Folder = ({ color = '#5227FF', size = 1, items = [] as React.ReactNode[], className = '' }: { color?: string; size?: number; items?: React.ReactNode[]; className?: string }) => {
   const maxItems = 3;
-  const papers = items.slice(0, maxItems);
+  const papers: (React.ReactNode | null)[] = items.slice(0, maxItems);
   while (papers.length < maxItems) {
-    papers.push(null);
+    papers.push(null as any);
   }
 
   const [open, setOpen] = useState(false);
@@ -40,7 +40,7 @@ const Folder = ({ color = '#5227FF', size = 1, items = [], className = '' }) => 
     }
   };
 
-  const handlePaperMouseMove = (e, index) => {
+  const handlePaperMouseMove = (e: React.MouseEvent, index: number) => {
     if (!open) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -72,7 +72,7 @@ const Folder = ({ color = '#5227FF', size = 1, items = [], className = '' }) => 
 
   const scaleStyle = { transform: `scale(${size})` };
 
-  const getOpenTransform = index => {
+  const getOpenTransform = (index: number) => {
     if (index === 0) return 'translate(-120%, -70%) rotate(-15deg)';
     if (index === 1) return 'translate(10%, -70%) rotate(15deg)';
     if (index === 2) return 'translate(-50%, -100%) rotate(5deg)';
