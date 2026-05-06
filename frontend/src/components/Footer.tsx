@@ -36,7 +36,7 @@ const Footer = () => {
                 <Zap className="w-4 h-4 text-white" />
               </div>
               <span className="text-lg font-bold text-white tracking-tight">
-                Yari<span className="text-blue-500">Tech</span>
+                Yari<span className="text-blue-500">Hub</span>
               </span>
             </div>
             <p className="text-sm text-slate-500 leading-relaxed">
@@ -98,7 +98,7 @@ const Footer = () => {
 
         {/* Bottom bar */}
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-slate-600">© 2026 Yari Tech. All rights reserved.</p>
+          <p className="text-xs text-slate-600">© 2026 YariHub. All rights reserved.</p>
           <div className="flex gap-6 text-xs text-slate-600">
             <a href="#" className="hover:text-slate-400 transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-slate-400 transition-colors">Terms of Service</a>

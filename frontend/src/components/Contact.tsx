@@ -43,7 +43,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-white dark:bg-[#0a0f1a]">
+    <section id="contact" className="py-24 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div 
@@ -75,10 +75,10 @@ const Contact = () => {
                 color: "emerald" 
               },
               { 
-                href: "mailto:hello@yaritech.ph", 
+                href: "mailto:hello@yarihub.tech", 
                 icon: Mail, 
                 title: "Email Us", 
-                detail: "hello@yaritech.ph", 
+                detail: "hello@yarihub.tech", 
                 color: "blue" 
               },
               { 

@@ -2,6 +2,7 @@ import { ArrowRight, ExternalLink, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import API_URL from '../config';
+import Folder from './Folder';
 
 interface Project {
   _id: string;
@@ -14,7 +15,35 @@ interface Project {
 }
 
 const SelectedWork = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<Project[]>([
+    {
+      _id: 'p1',
+      title: 'POS SYSTEM',
+      description: 'A modern shopping experience.',
+      tags: ['React', 'Node.js'],
+      gradient: 'from-blue-600 to-cyan-500',
+      isVisible: true,
+      badge: 'PRO'
+    },
+    {
+      _id: 'p2',
+      title: 'SAVINGS TRACKER APP',
+      description: 'Secure financial management.',
+      tags: ['TypeScript', 'Auth'],
+      gradient: 'from-violet-600 to-indigo-500',
+      isVisible: true,
+      badge: 'FINTECH'
+    },
+    {
+      _id: 'p3',
+      title: 'PAYROLL SYSTEM',
+      description: 'Manages employee compensation and benefits.',
+      tags: ['PHP', 'MySQL'],
+      gradient: 'from-emerald-500 to-teal-400',
+      isVisible: true,
+      badge: 'FINTECH'
+    }
+  ]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -23,8 +52,10 @@ const SelectedWork = () => {
         const response = await fetch(`${API_URL}/projects`);
         if (response.ok) {
           const data = await response.json();
-          // Show only visible projects on landing page
-          setProjects(data.filter((p: Project) => p.isVisible));
+          const visibleData = data.filter((p: Project) => p.isVisible);
+          if (visibleData.length > 0) {
+            setProjects(visibleData);
+          }
         }
       } catch (err) {
         console.error('Failed to fetch projects');
@@ -37,15 +68,15 @@ const SelectedWork = () => {
   }, []);
 
   return (
-    <section id="portfolio" className="py-24 bg-white dark:bg-[#0a0f1a]">
+    <section id="portfolio" className="py-24 bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-4"
+          className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-20 gap-4"
         >
           <div>
             <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-3">Portfolio</p>
@@ -62,58 +93,65 @@ const SelectedWork = () => {
           </a>
         </motion.div>
 
-        {/* Cards */}
+        {/* Folder Grid */}
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
           </div>
         ) : projects.length === 0 ? (
-          <div className="text-center py-20 bg-slate-50 dark:bg-slate-900/40 rounded-3xl border border-dashed border-slate-200 dark:border-slate-800">
+          <div className="text-center py-20 bg-white dark:bg-slate-900/40 rounded-3xl border border-dashed border-slate-200 dark:border-slate-800">
             <p className="text-slate-500 dark:text-slate-400">Our amazing projects are coming soon.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-24 gap-x-12 pt-10">
             {projects.slice(0, 6).map((project, i) => (
-              <motion.div 
+              <motion.div
                 key={project._id}
-                initial={{ opacity: 0, scale: 0.95, y: 30 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group cursor-pointer"
+                className="flex flex-col items-center group"
               >
-                {/* Image area */}
-                <div className={`relative overflow-hidden rounded-2xl mb-5 aspect-[4/3] bg-gradient-to-br ${project.gradient}`}>
-                  {/* Abstract decorations */}
-                  <div className="absolute top-4 right-4 w-24 h-24 bg-white/10 rounded-full blur-xl" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-3/4 h-3/4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 shadow-2xl transform group-hover:scale-105 transition-transform duration-500" />
-                  </div>
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
-                    <a href="#" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-slate-900 text-sm font-semibold shadow-lg">
-                      View Project <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                  {/* Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-black/30 backdrop-blur-md border border-white/20 text-[10px] font-bold text-white rounded-full uppercase tracking-widest">
-                      {project.badge}
-                    </span>
-                  </div>
+                <div className="relative mb-6">
+                  <Folder
+                    size={2.2}
+                    color={i % 2 === 0 ? '#3b82f6' : '#8b5cf6'}
+                    items={[
+                      <div className="w-full h-full p-2 flex flex-col justify-center items-center bg-white">
+                        <div className={`w-full h-8 rounded-sm mb-1 bg-gradient-to-br ${project.gradient} opacity-20`} />
+                        <span className="text-[6px] font-bold text-slate-400 uppercase tracking-tighter">Project Spec</span>
+                      </div>,
+                      <div className="w-full h-full p-2 flex flex-col justify-center items-center bg-white">
+                        <span className="text-[8px] font-black text-blue-600 mb-1 leading-none">{project.badge}</span>
+                        <div className="w-full h-[1px] bg-slate-100" />
+                      </div>,
+                      <div className="w-full h-full overflow-hidden bg-white flex flex-col">
+                        <div className={`w-full h-1/2 bg-gradient-to-br ${project.gradient}`} />
+                        <div className="p-2 flex-1 flex flex-col justify-between">
+                          <div className="space-y-1">
+                            <div className="w-full h-1.5 bg-slate-100 rounded-full" />
+                            <div className="w-3/4 h-1.5 bg-slate-100 rounded-full" />
+                          </div>
+                          <ExternalLink className="w-3 h-3 text-slate-300 ml-auto" />
+                        </div>
+                      </div>
+                    ]}
+                  />
                 </div>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="px-2.5 py-1 text-xs font-semibold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
-                      {tag}
-                    </span>
-                  ))}
+                <div className="text-center mt-12 space-y-2">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">
+                    {project.title}
+                  </h3>
+                  <div className="flex flex-wrap justify-center gap-1.5">
+                    {project.tags.slice(0, 2).map(tag => (
+                      <span key={tag} className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{project.title}</h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">{project.description}</p>
               </motion.div>
             ))}
           </div>

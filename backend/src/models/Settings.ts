@@ -7,7 +7,7 @@ const settingsSchema = new mongoose.Schema({
   },
   businessEmail: {
     type: String,
-    default: 'contact@yaritech.ph'
+    default: 'contact@yarihub.tech'
   },
   phoneNumber: {
     type: String,

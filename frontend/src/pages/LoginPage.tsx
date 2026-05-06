@@ -61,7 +61,7 @@ const LoginPage = () => {
           Admin Portal
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Sign in to access the Yari Tech dashboard
+          Sign in to access the YariHub dashboard
         </p>
       </div>
 

@@ -307,7 +307,7 @@ const Inquiries = () => {
 
             <div className="p-5 border-t border-slate-100 dark:border-slate-700/60 bg-white dark:bg-slate-900 space-y-3">
               <a 
-                href={`mailto:${selectedInquiry.email}?subject=Regarding your inquiry at Yari Tech`}
+                href={`mailto:${selectedInquiry.email}?subject=Regarding your inquiry at YariHub`}
                 className="w-full bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center transition-all shadow-md shadow-blue-500/20"
               >
                 <CornerUpLeft className="w-4 h-4 mr-2" />Reply via Email

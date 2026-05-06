@@ -54,7 +54,7 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section className="py-24 bg-white dark:bg-[#0a0f1a] relative overflow-hidden">
+    <section className="py-24 bg-transparent relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-blue-50/80 dark:from-blue-900/20 to-transparent blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,7 +63,7 @@ const Testimonials = () => {
           <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-3">Testimonials</p>
           <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">Trusted by Innovators</h2>
           <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-base">
-            From students to SME owners — here's what they say about working with Yari Tech.
+            From students to SME owners — here's what they say about working with YariHub.
           </p>
         </div>
 
