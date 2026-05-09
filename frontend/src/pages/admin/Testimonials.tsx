@@ -388,7 +388,7 @@ const Testimonials = () => {
 
       {/* Footer */}
       <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-8">
-        <p>© 2026 Yari Tech Admin Panel. Premium Cloud Infrastructure.</p>
+        <p>© 2026 YariHub Admin Panel. Premium Cloud Infrastructure.</p>
         <div className="flex items-center gap-6 mt-4 sm:mt-0">
           <a href="#" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Privacy Policy</a>
           <a href="#" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Documentation</a>

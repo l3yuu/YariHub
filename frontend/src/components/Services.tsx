@@ -1,5 +1,6 @@
-import { Monitor, Smartphone, Code, PenTool, ArrowRight } from 'lucide-react';
+import { Monitor, Smartphone, Code, PenTool } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Carousel from './Carousel';
 
 const services = [
   {
@@ -38,7 +39,7 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-24 bg-slate-50 dark:bg-[#0f172a] relative overflow-hidden">
+    <section id="services" className="py-24 bg-transparent relative overflow-hidden">
       {/* Subtle gradient orb */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-blue-100/60 dark:from-blue-900/20 to-transparent blur-3xl pointer-events-none" />
 
@@ -60,35 +61,23 @@ const Services = () => {
           </p>
         </motion.div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, i) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative bg-white dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700/60 p-6 card-hover cursor-pointer"
-            >
-              {/* Icon */}
-              <div className={`w-12 h-12 rounded-xl ${service.lightBg} ${service.darkBg} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
-                <div className={`w-6 h-6 bg-gradient-to-br ${service.gradient} rounded-lg flex items-center justify-center`}>
-                  <service.icon className="w-3.5 h-3.5 text-white" />
-                </div>
-              </div>
-
-              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">{service.title}</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">{service.description}</p>
-
-              <div className="flex items-center gap-1 text-xs font-semibold text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Learn more <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-              </div>
-
-              {/* Bottom gradient line */}
-              <div className={`absolute bottom-0 left-6 right-6 h-0.5 bg-gradient-to-r ${service.gradient} rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-            </motion.div>
-          ))}
+        {/* Carousel for Services */}
+        <div className="flex justify-center mt-8">
+          <div className="h-[400px] relative w-full flex justify-center">
+            <Carousel
+              items={services.map((s, i) => ({
+                ...s,
+                id: i,
+                icon: <s.icon className="w-8 h-8 text-white" />
+              }))}
+              baseWidth={600}
+              autoplay={true}
+              autoplayDelay={3500}
+              pauseOnHover={true}
+              loop={true}
+              round={false}
+            />
+          </div>
         </div>
       </div>
 

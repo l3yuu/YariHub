@@ -77,7 +77,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 } else {
   app.get('/', (req, res) => {
-      res.send('Yari Tech API is running!');
+      res.send('YariHub API is running!');
   });
 }
 
@@ -94,3 +94,4 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 app.listen(PORT, () => {
     console.log(`Server running in ${process.env.NODE_ENV} mode on http://localhost:${PORT}`);
 });
+// Restart trigger 2

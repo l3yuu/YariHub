@@ -22,8 +22,9 @@ export const loginUser = async (req: express.Request, res: express.Response) => 
     } else {
       res.status(401).json({ message: 'Invalid email or password' });
     }
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+  } catch (error: any) {
+    console.error('Login Error:', error);
+    res.status(500).json({ message: 'Server error', details: error.message });
   }
 };
 
