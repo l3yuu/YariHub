@@ -61,7 +61,7 @@ const NewBlogPost = () => {
               <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-3">URL Slug</label>
               <div className="flex rounded-2xl shadow-sm overflow-hidden border border-slate-200 dark:border-slate-700">
                 <span className="inline-flex items-center px-5 border-r border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-bold font-mono">
-                  yaritech.com/blog/
+                  yarihub.tech/blog/
                 </span>
                 <input 
                   type="text" 

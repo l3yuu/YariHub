@@ -46,7 +46,7 @@ const AdminLayout = () => {
               <Zap className="w-4 h-4 text-white" />
             </div>
             <div>
-              <h1 className="text-sm font-bold text-white tracking-tight">Yari<span className="text-blue-400">Tech</span></h1>
+              <h1 className="text-sm font-bold text-white tracking-tight">Yari<span className="text-blue-400">Hub</span></h1>
               <p className="text-[9px] uppercase tracking-widest text-blue-400/70 font-semibold">Admin Console</p>
             </div>
           </div>
@@ -90,7 +90,7 @@ const AdminLayout = () => {
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-white truncate">{user?.name || 'Admin User'}</p>
-              <p className="text-xs text-slate-500 truncate">{user?.email || 'admin@yaritech.ph'}</p>
+              <p className="text-xs text-slate-500 truncate">{user?.email || 'admin@yarihub.tech'}</p>
             </div>
           </div>
           <button

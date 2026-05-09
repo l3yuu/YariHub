@@ -41,7 +41,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden bg-white dark:bg-[#0a0f1a]">
+    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden bg-transparent">
       
       {/* Dot-grid background */}
       <div className="absolute inset-0 dot-grid opacity-60 dark:opacity-100" />
@@ -51,13 +51,13 @@ const Hero = () => {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute -top-40 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-blue-400/20 via-violet-400/10 to-transparent rounded-full blur-3xl pointer-events-none" 
+        className="absolute -top-40 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-blue-500/30 via-violet-500/20 dark:from-blue-400/20 dark:via-violet-400/10 to-transparent rounded-full blur-2xl transform-gpu pointer-events-none" 
       />
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
-        className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-blue-400/10 to-transparent rounded-full blur-3xl pointer-events-none" 
+        className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-blue-500/20 dark:from-blue-400/10 to-transparent rounded-full blur-2xl transform-gpu pointer-events-none" 
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-8 pb-20 lg:pt-12 lg:pb-32">
@@ -124,7 +124,7 @@ const Hero = () => {
                 ))}
               </div>
               <p className="text-sm text-slate-500 dark:text-slate-400">
-                <span className="font-semibold text-slate-800 dark:text-slate-200">50+</span> clients trust Yari Tech
+                <span className="font-semibold text-slate-800 dark:text-slate-200">50+</span> clients trust YariHub
               </p>
             </motion.div>
           </div>
@@ -149,7 +149,7 @@ const Hero = () => {
                   <div className="w-3 h-3 rounded-full bg-amber-400" />
                   <div className="w-3 h-3 rounded-full bg-emerald-400" />
                   <div className="flex-1 mx-4 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-md px-3 py-1 text-xs text-slate-400 dark:text-slate-500">
-                    yaritech.com/dashboard
+                    yarihub.tech/dashboard
                   </div>
                 </div>
 

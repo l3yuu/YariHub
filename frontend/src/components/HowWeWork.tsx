@@ -38,7 +38,7 @@ const steps = [
 
 const HowWeWork = () => {
   return (
-    <section id="how-we-work" className="py-24 bg-white dark:bg-[#0a0f1a] relative overflow-hidden">
+    <section id="how-we-work" className="py-24 bg-transparent relative overflow-hidden">
       {/* Background patterns */}
       <div className="absolute inset-0 dot-grid opacity-30 dark:opacity-20" />
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />

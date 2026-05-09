@@ -149,7 +149,7 @@ const Projects = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Portfolio Projects</h1>
-          <p className="mt-2 text-slate-600 dark:text-slate-400">Manage and monitor the Yari Tech project ecosystem.</p>
+          <p className="mt-2 text-slate-600 dark:text-slate-400">Manage and monitor the YariHub project ecosystem.</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="relative">

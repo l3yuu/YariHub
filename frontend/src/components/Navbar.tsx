@@ -3,6 +3,7 @@ import { Menu, X, Sun, Moon, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
+import GooeyNav from './GooeyNav';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -21,7 +22,7 @@ const Navbar = () => {
     { label: 'Services', href: '#services' },
     { label: 'How We Work', href: '#how-we-work' },
     { label: 'Portfolio', href: '#portfolio' },
-    { label: 'Pricing', href: '#pricing' },
+    { label: 'Team', href: '#team' },
     { label: 'Contact', href: '#contact' },
   ];
 
@@ -44,22 +45,13 @@ const Navbar = () => {
               <Zap className="w-4 h-4 text-white" />
             </div>
             <span className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
-              Yari<span className="text-blue-600">Tech</span>
+              Yari<span className="text-blue-600">Hub</span>
             </span>
           </Link>
 
           {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-8">
-            {links.map(link => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="relative text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group"
-              >
-                {link.label}
-                <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-blue-600 rounded-full group-hover:w-full transition-all duration-300" />
-              </a>
-            ))}
+          <div className="hidden md:flex items-center">
+            <GooeyNav items={links} />
           </div>
 
           {/* Right actions */}

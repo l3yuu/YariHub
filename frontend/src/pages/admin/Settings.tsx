@@ -27,8 +27,8 @@ const Settings = () => {
   const [activeTab, setActiveTab] = useState('General');
   
   const [companyData, setCompanyData] = useState({
-    companyName: 'Yari Tech Solutions',
-    businessEmail: 'contact@yaritech.ph',
+    companyName: 'YariHub Solutions',
+    businessEmail: 'contact@yarihub.tech',
     phoneNumber: '+63 917 123 4567',
     headquarters: 'BGC, Taguig City, Metro Manila',
     socials: {
@@ -189,7 +189,7 @@ const Settings = () => {
       <div>
         <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Account Settings</h1>
         <p className="mt-2 text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
-          Manage your company profile, security credentials, and system notification preferences to optimize your Yari Tech workflow.
+          Manage your company profile, security credentials, and system notification preferences to optimize your YariHub workflow.
         </p>
       </div>
 
