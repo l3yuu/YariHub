@@ -1,148 +1,192 @@
-import React, { useEffect, useState } from 'react';
-import { Menu, X, Sun, Moon, Zap } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { useTheme } from '../context/ThemeContext';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { useLenis } from 'lenis/react';
 import { useAuth } from '../context/AuthContext';
-import GooeyNav from './GooeyNav';
+import Logo from './Logo';
+import AboutMegaMenu from './AboutMegaMenu';
+import ServicesMegaMenu from './ServicesMegaMenu';
+
+/** Scroll distance (px) to fully morph navbar — tied 1:1 to Lenis scroll position */
+export const NAV_SCROLL_RANGE = 120;
+
+const links = [
+  { label: 'Home', to: '/' },
+  { label: 'Testimonials', to: '/testimonials' },
+  { label: 'Portfolio', to: '/portfolio' },
+  { label: 'Contact Us', to: '/contact' },
+];
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
   const { user } = useAuth();
+  const location = useLocation();
+  const lenis = useLenis();
 
+  const setNavProgress = (scrollY: number) => {
+    const progress = Math.min(1, Math.max(0, scrollY / NAV_SCROLL_RANGE));
+    navRef.current?.style.setProperty('--nav-progress', String(progress));
+  };
+
+  useLenis((instance) => setNavProgress(instance.scroll), []);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    if (lenis) setNavProgress(lenis.scroll);
+  }, [lenis]);
 
-  const links = [
-    { label: 'Services', href: '#services' },
-    { label: 'How We Work', href: '#how-we-work' },
-    { label: 'Portfolio', href: '#portfolio' },
-    { label: 'Team', href: '#team' },
-    { label: 'Contact', href: '#contact' },
-  ];
+  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `text-sm font-medium transition-colors duration-300 ${
+      isActive ? 'text-[#2563EB]' : 'text-slate-600 hover:text-slate-900'
+    }`;
+
+  const mobileNavLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-300 ${
+      isActive ? 'text-[#2563EB] bg-blue-50' : 'text-slate-700 hover:bg-slate-50'
+    }`;
+
+  const handleHomeClick = (e: React.MouseEvent, isActive: boolean) => {
+    if (location.pathname === '/' && isActive) {
+      e.preventDefault();
+      lenis?.scrollTo(0, { duration: 1.35 });
+    }
+    setIsOpen(false);
+  };
+
+  const closeMobile = () => setIsOpen(false);
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'bg-white/90 dark:bg-[#0a0f1a]/90 backdrop-blur-lg shadow-lg shadow-black/5 dark:shadow-black/20 border-b border-slate-200/80 dark:border-slate-800/80' 
-        : 'bg-transparent'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 py-3">
-          
-          {/* Logo */}
-          <Link 
-            to="/" 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-2.5 group transition-all"
-          >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center shadow-md group-hover:shadow-blue-500/25 group-hover:-translate-y-0.5 transition-all">
-              <Zap className="w-4 h-4 text-white" />
-            </div>
-            <span className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
-              Yari<span className="text-blue-600">Hub</span>
-            </span>
-          </Link>
-
-          {/* Desktop nav links */}
-          <div className="hidden md:flex items-center">
-            <GooeyNav items={links} />
-          </div>
-
-          {/* Right actions */}
-          <div className="hidden md:flex items-center gap-3">
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              className="w-9 h-9 rounded-lg flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-            >
-              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
-            <Link
-              to={user ? "/admin/dashboard" : "/login"}
-              className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
-            >
-              {user ? 'Dashboard' : 'Login'}
+    <header className="navbar-shell">
+      <nav ref={navRef} className="navbar-dock">
+        <div className="navbar-dock-inner">
+          <div className="navbar-dock-row">
+            <Link to="/" onClick={closeMobile} className="justify-self-start">
+              <Logo />
             </Link>
-            {user ? (
-              <Link
-                to="/admin/dashboard"
-                className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 shadow-md shadow-blue-500/25 transition-all hover:shadow-blue-500/40 hover:-translate-y-0.5"
-              >
-                Go to Console
-              </Link>
-            ) : (
-              <a
-                href="#contact"
-                className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 shadow-md shadow-blue-500/25 transition-all hover:shadow-blue-500/40 hover:-translate-y-0.5"
-              >
-                Get Started
-              </a>
-            )}
-          </div>
 
-          {/* Mobile: theme toggle + hamburger */}
-          <div className="md:hidden flex items-center gap-2">
+            <div className="hidden lg:flex items-center gap-8 justify-self-center">
+              <NavLink
+                to="/"
+                end
+                className={navLinkClass}
+                onClick={(e) => handleHomeClick(e, location.pathname === '/')}
+              >
+                Home
+              </NavLink>
+              <AboutMegaMenu variant="desktop" />
+              <ServicesMegaMenu variant="desktop" />
+              {links.slice(1).map((link) => (
+                <NavLink
+                  key={link.label}
+                  to={link.to}
+                  className={navLinkClass}
+                >
+                  {link.label}
+                </NavLink>
+              ))}
+            </div>
+
+            <div className="hidden lg:flex items-center gap-3 justify-self-end">
+              {user && (
+                <Link
+                  to="/admin/dashboard"
+                  className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors duration-300"
+                >
+                  Dashboard
+                </Link>
+              )}
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-[#2563EB] hover:bg-[#1d4ed8] transition-colors duration-300 shadow-sm shadow-blue-500/20"
+                >
+                  Get Started
+                </Link>
+              </motion.div>
+            </div>
+
             <button
-              onClick={toggleTheme}
-              className="w-9 h-9 rounded-lg flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              type="button"
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden justify-self-end w-10 h-10 flex items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 transition-colors duration-300"
+              aria-label="Toggle menu"
+              aria-expanded={isOpen}
             >
-              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
-            <button onClick={() => setIsOpen(!isOpen)} className="w-9 h-9 flex items-center justify-center rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="md:hidden bg-white dark:bg-[#0a0f1a] border-t border-slate-200 dark:border-slate-800 px-4 pt-4 pb-6 space-y-1">
-          {links.map(link => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="lg:hidden overflow-hidden border-t border-slate-100"
             >
-              {link.label}
-            </a>
-          ))}
-          <div className="pt-3 flex flex-col gap-2 border-t border-slate-200 dark:border-slate-800 mt-3">
-            <Link 
-              to={user ? "/admin/dashboard" : "/login"} 
-              onClick={() => setIsOpen(false)}
-              className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-            >
-              {user ? 'Dashboard' : 'Login'}
-            </Link>
-            {user ? (
-              <Link 
-                to="/admin/dashboard" 
-                onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-violet-600"
-              >
-                Go to Console
-              </Link>
-            ) : (
-              <a 
-                href="#contact" 
-                onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-violet-600"
-              >
-                Get Started
-              </a>
-            )}
-          </div>
-        </div>
-      )}
-    </nav>
+              <div className="px-4 pt-4 pb-6 space-y-1">
+                <motion.div
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <NavLink
+                    to="/"
+                    end
+                    onClick={(e) => {
+                      closeMobile();
+                      handleHomeClick(e, location.pathname === '/');
+                    }}
+                    className={mobileNavLinkClass}
+                  >
+                    Home
+                  </NavLink>
+                </motion.div>
+                <AboutMegaMenu variant="mobile" onNavigate={closeMobile} />
+                <ServicesMegaMenu variant="mobile" onNavigate={closeMobile} />
+                {links.slice(1).map((link, i) => (
+                  <motion.div
+                    key={link.label}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: (i + 3) * 0.04, duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <NavLink
+                      to={link.to}
+                      onClick={closeMobile}
+                      className={mobileNavLinkClass}
+                    >
+                      {link.label}
+                    </NavLink>
+                  </motion.div>
+                ))}
+                <div className="pt-3 mt-3 border-t border-slate-100">
+                  {user && (
+                    <Link
+                      to="/admin/dashboard"
+                      onClick={closeMobile}
+                      className="block px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-lg mb-2"
+                    >
+                      Dashboard
+                    </Link>
+                  )}
+                  <Link
+                    to="/contact"
+                    onClick={closeMobile}
+                    className="flex items-center justify-center px-4 py-2.5 rounded-full text-sm font-semibold text-white bg-[#2563EB]"
+                  >
+                    Get Started
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+    </header>
   );
 };
 

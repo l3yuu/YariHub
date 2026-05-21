@@ -1,5 +1,6 @@
 import { PhoneCall, PenTool, Terminal, Rocket, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const steps = [
   {
@@ -38,7 +39,7 @@ const steps = [
 
 const HowWeWork = () => {
   return (
-    <section id="how-we-work" className="py-24 bg-transparent relative overflow-hidden">
+    <section id="how-we-work" className="py-24 bg-slate-50 relative overflow-hidden">
       {/* Background patterns */}
       <div className="absolute inset-0 dot-grid opacity-30 dark:opacity-20" />
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
@@ -129,8 +130,8 @@ const HowWeWork = () => {
            
            <div className="relative z-10 flex flex-col items-center">
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Ready to build something extraordinary?</h3>
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 className="group relative inline-flex items-center gap-2 px-10 py-4 rounded-2xl text-lg font-bold text-white overflow-hidden transition-all hover:scale-105 active:scale-95"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-violet-600 group-hover:from-blue-700 group-hover:to-violet-700 transition-all" />
@@ -138,7 +139,7 @@ const HowWeWork = () => {
                 <span className="relative flex items-center gap-2">
                   Launch Your Project <Rocket className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </span>
-              </a>
+              </Link>
               <p className="mt-4 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Initial consultation is free</p>
            </div>
         </motion.div>

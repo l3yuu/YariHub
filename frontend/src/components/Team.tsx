@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 import ProfileCard from './ProfileCard';
+import type { SectionPageProps } from '../types/section';
 
 const teamMembers = [
   { name: 'Ara Nina Legaspi', title: 'Business Analyst', handle: 'aranina', status: 'Online' },
@@ -13,11 +14,12 @@ const teamMembers = [
   { name: 'Carlos Miguel Adem', title: 'QA Engineer', handle: 'carlos', status: 'Online' },
 ];
 
-const Team = () => {
+const Team = ({ standalone = false }: SectionPageProps) => {
+  const sectionPad = standalone ? 'pt-28 pb-24' : 'py-24';
   const { theme } = useTheme();
 
   return (
-    <section id="team" className="py-24 bg-transparent relative overflow-hidden transition-colors duration-300">
+    <section id="team" className={`${sectionPad} bg-white relative overflow-hidden`}>
       <style>{`
         @keyframes infinite-scroll {
           from { transform: translateX(0); }

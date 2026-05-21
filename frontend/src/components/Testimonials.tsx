@@ -1,6 +1,8 @@
 import { Star, Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import API_URL from '../config';
+import SectionMoreLink from './SectionMoreLink';
+import type { SectionPageProps } from '../types/section';
 
 interface Testimonial {
   _id: string;
@@ -31,7 +33,8 @@ const getGradient = (id: string) => {
   return gradients[Math.abs(hash) % gradients.length];
 };
 
-const Testimonials = () => {
+const Testimonials = ({ standalone = false, preview = false, moreHref = '/testimonials' }: SectionPageProps) => {
+  const sectionPad = standalone ? 'pt-28 pb-24' : 'py-24';
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -54,7 +57,7 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section className="py-24 bg-transparent relative overflow-hidden">
+    <section id="testimonials" className={`${sectionPad} bg-white relative overflow-hidden`}>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-blue-50/80 dark:from-blue-900/20 to-transparent blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -121,6 +124,7 @@ const Testimonials = () => {
           </div>
         )}
       </div>
+      {preview && moreHref && <SectionMoreLink to={moreHref} label="See all testimonials" />}
     </section>
   );
 };

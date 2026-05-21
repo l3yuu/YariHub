@@ -1,8 +1,11 @@
 import { ArrowRight, ExternalLink, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import API_URL from '../config';
 import Folder from './Folder';
+import SectionMoreLink from './SectionMoreLink';
+import type { SectionPageProps } from '../types/section';
 
 interface Project {
   _id: string;
@@ -14,7 +17,8 @@ interface Project {
   badge: string;
 }
 
-const SelectedWork = () => {
+const SelectedWork = ({ standalone = false, preview = false, moreHref = '/portfolio' }: SectionPageProps) => {
+  const sectionPad = standalone ? 'pt-28 pb-24' : 'py-24';
   const [projects, setProjects] = useState<Project[]>([
     {
       _id: 'p1',
@@ -68,7 +72,7 @@ const SelectedWork = () => {
   }, []);
 
   return (
-    <section id="portfolio" className="py-24 bg-transparent overflow-hidden">
+    <section id="portfolio" className={`${sectionPad} bg-slate-50 overflow-hidden`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -84,13 +88,13 @@ const SelectedWork = () => {
               Selected Work
             </h2>
           </div>
-          <a
-            href="#"
+          <Link
+            to={moreHref}
             className="flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 group transition-colors shrink-0"
           >
             View all projects
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+          </Link>
         </motion.div>
 
         {/* Folder Grid */}
@@ -157,6 +161,7 @@ const SelectedWork = () => {
           </div>
         )}
       </div>
+      {preview && moreHref && <SectionMoreLink to={moreHref} label="View full portfolio" />}
     </section>
   );
 };
