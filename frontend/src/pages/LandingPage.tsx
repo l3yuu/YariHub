@@ -1,7 +1,8 @@
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
-import Services from '../components/Services';
+import AboutHero from '../components/AboutHero';
 import HowWeWork from '../components/HowWeWork';
+import Services from '../components/Services';
 import SelectedWork from '../components/SelectedWork';
 import Team from '../components/Team';
 import Testimonials from '../components/Testimonials';
@@ -31,10 +32,12 @@ const LandingPage = () => {
 
       <div className="relative z-10">
         <Navbar />
+        <div className="h-16" aria-hidden="true" />
         <main>
           <Hero />
-          <Services />
+          <AboutHero />
           <HowWeWork />
+          <Services />
           <SelectedWork />
           <Team />
           <Testimonials />

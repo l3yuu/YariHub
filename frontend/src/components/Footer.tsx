@@ -25,9 +25,9 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[#0a0f1a] text-slate-400 pt-16 pb-8 border-t border-slate-800">
+    <footer className="bg-[#0a0f1a] text-slate-400 pt-12 sm:pt-16 pb-8 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-10 sm:mb-12">
 
           {/* Brand */}
           <div className="space-y-4">
@@ -79,7 +79,7 @@ const Footer = () => {
           <div>
             <h4 className="text-xs font-bold text-white uppercase tracking-widest mb-4">Newsletter</h4>
             <p className="text-sm text-slate-500 mb-4">Stay updated with our latest news and tech insights.</p>
-            <form className="flex">
+            <form className="flex w-full">
               <input
                 type="email"
                 placeholder="Email address"
@@ -97,9 +97,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-slate-800 pt-8 flex flex-col lg:flex-row justify-between items-center gap-4 text-center lg:text-left">
           <p className="text-xs text-slate-600">© 2026 YariHub. All rights reserved.</p>
-          <div className="flex gap-6 text-xs text-slate-600">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-slate-600">
             <a href="#" className="hover:text-slate-400 transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-slate-400 transition-colors">Terms of Service</a>
           </div>

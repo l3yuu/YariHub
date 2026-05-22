@@ -1,87 +1,233 @@
-import { Monitor, Smartphone, Code, PenTool } from 'lucide-react';
-import { motion } from 'framer-motion';
-import Carousel from './Carousel';
+import { useState, type MouseEvent } from 'react';
+import { AnimatePresence, motion, useMotionValue, useSpring, type Variants } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+import hero4Bg from '../assets/hero4bg.png';
+import phone from '../assets/cp.png';
+import laptop from '../assets/laptop.png';
+import systemImg from '../assets/system.png';
 
 const services = [
   {
-    title: 'Web Development',
-    description: 'Scalable web applications built with performance and user experience first.',
-    icon: Monitor,
-    gradient: 'from-blue-500 to-cyan-500',
-    lightBg: 'bg-blue-50',
-    darkBg: 'dark:bg-blue-950/30',
-  },
-  {
-    title: 'Mobile Apps',
-    description: 'Native and cross-platform solutions for iOS and Android ecosystems.',
-    icon: Smartphone,
-    gradient: 'from-violet-500 to-purple-500',
-    lightBg: 'bg-violet-50',
-    darkBg: 'dark:bg-violet-950/30',
-  },
-  {
-    title: 'System Dev',
-    description: 'Corporate backend architecture and internal management systems for growth.',
-    icon: Code,
-    gradient: 'from-indigo-500 to-blue-500',
-    lightBg: 'bg-indigo-50',
-    darkBg: 'dark:bg-indigo-950/30',
-  },
-  {
+    id: 'uiux',
+    label: 'UI/UX Design',
     title: 'UI/UX Design',
-    description: 'Intuitive digital experiences crafted with modern minimalism and purpose.',
-    icon: PenTool,
-    gradient: 'from-pink-500 to-rose-500',
-    lightBg: 'bg-pink-50',
-    darkBg: 'dark:bg-pink-950/30',
+    description:
+      'We create intuitive and visually engaging user experiences that improve usability, customer interaction, and overall digital performance across web and mobile platforms.',
+    device: 'phone',
+  },
+  {
+    id: 'web',
+    label: 'Web Development',
+    title: 'Web Development',
+    description:
+      'Custom-built websites designed for performance, responsiveness, scalability, and seamless user experience tailored to your business needs.',
+    device: 'laptop',
+  },
+  {
+    id: 'system',
+    label: 'System Development',
+    title: 'System Development',
+    description:
+      'Reliable business systems built to streamline operations, automate workflows, and support long-term growth with scalable architecture.',
+    device: 'system',
   },
 ];
 
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 28, rotateX: 8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const staggered: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: index * 0.08,
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
+
 const Services = () => {
+  const [activeService, setActiveService] = useState(services[0]);
+  const phoneRotateX = useMotionValue(0);
+  const phoneRotateY = useMotionValue(0);
+  const smoothRotateX = useSpring(phoneRotateX, { stiffness: 220, damping: 22 });
+  const smoothRotateY = useSpring(phoneRotateY, { stiffness: 220, damping: 22 });
+
+  const handlePhoneMove = (event: MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    phoneRotateX.set(y * -16);
+    phoneRotateY.set(x * 18);
+  };
+
+  const resetPhoneTilt = () => {
+    phoneRotateX.set(0);
+    phoneRotateY.set(0);
+  };
+
   return (
-    <section id="services" className="py-24 bg-transparent relative overflow-hidden">
-      {/* Subtle gradient orb */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-blue-100/60 dark:from-blue-900/20 to-transparent blur-3xl pointer-events-none" />
+    <section id="services" className="relative overflow-hidden bg-white text-[#00184A]">
+      <div className="relative min-h-[calc(100svh-4rem)] w-full overflow-hidden">
+        <motion.img
+          src={hero4Bg}
+          alt=""
+          aria-hidden="true"
+          initial={{ opacity: 0, y: -35, scale: 1.02 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-fill"
+        />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-3">What We Offer</p>
-          <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
-            Our Services
-          </h2>
-          <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-base">
-            End-to-end digital solutions tailored for Filipino businesses at every stage.
-          </p>
-        </motion.div>
+        <div className="relative z-10 grid min-h-[calc(100svh-4rem)] grid-cols-1 items-start gap-0 px-[clamp(1.5rem,4vw,4rem)] pt-[clamp(2rem,6vh,5rem)] pb-[clamp(2rem,4vh,3rem)] lg:grid-cols-[55%_45%]">
+          <div className="flex flex-col items-center lg:items-start">
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.35 }}
+              style={{ transformPerspective: 1200, transformStyle: 'preserve-3d' }}
+            >
+              <motion.h2
+                className="font-['Poppins',sans-serif] text-[clamp(2.2rem,5vw,4.5rem)] font-semibold leading-[0.92] tracking-normal text-white sm:whitespace-nowrap"
+                style={{ translateZ: 54, textShadow: '0 2px 0 rgba(0,24,74,0.16)' }}
+              >
+                Our Services
+              </motion.h2>
+              <motion.p
+                className="mt-2 max-w-md font-['Poppins',sans-serif] text-[clamp(0.78rem,1.45vw,1.15rem)] font-normal leading-tight text-white"
+                style={{ translateZ: 34 }}
+              >
+                End-to-end digital solutions tailored for Filipino businesses at every stage.
+              </motion.p>
+            </motion.div>
 
-        {/* Carousel for Services */}
-        <div className="flex justify-center mt-8">
-          <div className="h-[400px] relative w-full flex justify-center">
-            <Carousel
-              items={services.map((s, i) => ({
-                ...s,
-                id: i,
-                icon: <s.icon className="w-8 h-8 text-white" />
-              }))}
-              baseWidth={600}
-              autoplay={true}
-              autoplayDelay={3500}
-              pauseOnHover={true}
-              loop={true}
-              round={false}
-            />
+            <div className="mt-[clamp(1.5rem,3.5vh,3rem)] flex flex-wrap justify-center gap-4 lg:justify-start">
+              {services.map((service, index) => (
+                <motion.button
+                  key={service.id}
+                  type="button"
+                  onClick={() => setActiveService(service)}
+                  custom={index}
+                  variants={staggered}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.35 }}
+                  whileHover={{ y: -5, rotateX: 8, scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  className={`min-w-28 rounded-xl bg-white px-5 py-2.5 font-['Poppins',sans-serif] text-[clamp(0.72rem,1vw,0.95rem)] font-bold text-[#0E6AF3] shadow-[0_4px_10px_rgba(0,24,74,0.28)] sm:min-w-36 sm:px-6 ${
+                    activeService.id === service.id ? 'ring-2 ring-white ring-offset-2 ring-offset-[#0E6AF3]' : ''
+                  }`}
+                  style={{ transformPerspective: 900, transformStyle: 'preserve-3d' }}
+                >
+                  {service.label}
+                </motion.button>
+              ))}
+            </div>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeService.id}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 18, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="mt-[clamp(7rem,18vh,13rem)] max-w-[38rem] text-center lg:text-left"
+              >
+                <h3
+                  className="font-['Poppins',sans-serif] text-[clamp(2.4rem,4.8vw,4.2rem)] font-bold leading-none tracking-normal text-[#0E6AF3]"
+                >
+                  {activeService.title}
+                </h3>
+                <p
+                  className="mt-5 font-['Poppins',sans-serif] text-[clamp(0.92rem,1.5vw,1.25rem)] font-normal leading-relaxed text-[#00184A]"
+                >
+                  {activeService.description}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            <motion.a
+              href="#contact"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              whileHover={{ x: 4, y: -3 }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-8 inline-flex items-center font-['Poppins',sans-serif] text-sm font-medium text-[#0E6AF3]"
+            >
+              Learn more <ArrowUpRight className="ml-1 inline h-3.5 w-3.5" />
+            </motion.a>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 80, rotateY: -12, scale: 0.96 }}
+            whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.85, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            onMouseMove={handlePhoneMove}
+            onMouseLeave={resetPhoneTilt}
+            className="flex items-center justify-center cursor-grab active:cursor-grabbing max-h-[calc(100svh-6rem)] self-center"
+            style={{ transformPerspective: 1400, transformStyle: 'preserve-3d' }}
+          >
+            <AnimatePresence mode="wait">
+              {activeService.device === 'phone' ? (
+                <motion.img
+                  key="phone"
+                  src={phone}
+                  alt=""
+                  aria-hidden="true"
+                  initial={{ opacity: 0, scale: 0.92, rotateY: -12 }}
+                  animate={{ opacity: 1, scale: 1, rotateY: 0, y: [0, -10, 0] }}
+                  exit={{ opacity: 0, scale: 0.92, rotateY: 12 }}
+                  transition={{ duration: 0.45, y: { duration: 4.5, repeat: Infinity, ease: 'easeInOut' } }}
+                  className="h-auto w-full max-w-[clamp(16rem,26vw,26rem)] max-h-[calc(100svh-8rem)] object-contain"
+                  style={{ rotateX: smoothRotateX, rotateY: smoothRotateY, transformStyle: 'preserve-3d' }}
+                />
+              ) : activeService.device === 'laptop' ? (
+                <motion.img
+                  key="laptop"
+                  src={laptop}
+                  alt=""
+                  aria-hidden="true"
+                  initial={{ opacity: 0, scale: 0.92, rotateY: -12 }}
+                  animate={{ opacity: 1, scale: 1, rotateY: 0, y: [0, -8, 0] }}
+                  exit={{ opacity: 0, scale: 0.92, rotateY: 12 }}
+                  transition={{ duration: 0.45, y: { duration: 4.8, repeat: Infinity, ease: 'easeInOut' } }}
+                  className="h-auto w-full max-w-[clamp(22rem,38vw,42rem)]"
+                  style={{ rotateX: smoothRotateX, rotateY: smoothRotateY, transformStyle: 'preserve-3d' }}
+                />
+              ) : (
+                <motion.img
+                  key="system"
+                  src={systemImg}
+                  alt=""
+                  aria-hidden="true"
+                  initial={{ opacity: 0, scale: 0.92, rotateY: -12 }}
+                  animate={{ opacity: 1, scale: 1, rotateY: 0, y: [0, -8, 0] }}
+                  exit={{ opacity: 0, scale: 0.92, rotateY: 12 }}
+                  transition={{ duration: 0.45, y: { duration: 4.8, repeat: Infinity, ease: 'easeInOut' } }}
+                  className="h-auto w-full max-w-[clamp(22rem,38vw,42rem)]"
+                  style={{ rotateX: smoothRotateX, rotateY: smoothRotateY, transformStyle: 'preserve-3d' }}
+                />
+              )}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </div>
 
-      {/* WhatsApp sticky */}
       <motion.a
         href="https://wa.me/639000000000"
         target="_blank"
@@ -90,12 +236,12 @@ const Services = () => {
         animate={{ opacity: 1, scale: 1 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        transition={{ type: "spring", stiffness: 260, damping: 20 }}
-        className="fixed bottom-6 right-6 w-13 h-13 bg-emerald-500 hover:bg-emerald-600 rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all z-50 p-3"
+        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+        className="fixed bottom-4 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500 p-3 shadow-lg shadow-emerald-500/30 transition-all hover:bg-emerald-600 hover:shadow-emerald-500/50 sm:bottom-6 sm:right-6 sm:h-13 sm:w-13"
         aria-label="Chat on WhatsApp"
       >
-        <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        <svg className="h-7 w-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
         </svg>
       </motion.a>
     </section>

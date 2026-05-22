@@ -35,7 +35,7 @@ const Contact = () => {
         const data = await response.json();
         setError(data.message || 'Something went wrong. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setError('Connection error. Please check your internet and try again.');
     } finally {
       setLoading(false);
@@ -43,7 +43,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-transparent">
+    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div 
@@ -51,10 +51,10 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
           <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-3">Contact</p>
-          <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
             Let's Build Something Great
           </h2>
           <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-base">
@@ -62,7 +62,7 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-5 gap-12 items-start max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start max-w-6xl mx-auto">
           
           {/* Left: contact info */}
           <div className="lg:col-span-2 space-y-4">
@@ -98,7 +98,7 @@ const Contact = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`flex items-center gap-4 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-slate-800/50 hover:border-${item.color}-400 dark:hover:border-${item.color}-600 hover:shadow-lg hover:shadow-${item.color}-500/10 transition-all group card-hover`}
+                className={`flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-slate-800/50 hover:border-${item.color}-400 dark:hover:border-${item.color}-600 hover:shadow-lg hover:shadow-${item.color}-500/10 transition-all group card-hover`}
               >
                 <div className={`w-12 h-12 bg-${item.color}-100 dark:bg-${item.color}-950/50 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
                   <item.icon className={`w-5 h-5 text-${item.color}-600 dark:text-${item.color}-400`} />
@@ -131,7 +131,7 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-3"
           >
-            <div className="bg-white dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700/60 shadow-xl shadow-black/5 dark:shadow-black/20 p-8">
+            <div className="bg-white dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700/60 shadow-xl shadow-black/5 dark:shadow-black/20 p-5 sm:p-8">
               {submitted ? (
                 <div className="py-12 flex flex-col items-center text-center animate-in fade-in zoom-in duration-500">
                   <div className="w-20 h-20 bg-emerald-100 dark:bg-emerald-950/50 rounded-full flex items-center justify-center mb-6">
@@ -143,7 +143,7 @@ const Contact = () => {
                   </p>
                   <button 
                     onClick={() => setSubmitted(false)}
-                    className="px-8 py-3 rounded-xl font-semibold text-white bg-slate-900 dark:bg-blue-600 hover:opacity-90 transition-all"
+                    className="w-full sm:w-auto px-8 py-3 rounded-xl font-semibold text-white bg-slate-900 dark:bg-blue-600 hover:opacity-90 transition-all"
                   >
                     Send Another Message
                   </button>

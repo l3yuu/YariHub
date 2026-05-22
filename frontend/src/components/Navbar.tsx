@@ -1,100 +1,95 @@
 import React, { useEffect, useState } from 'react';
-import { Menu, X, Sun, Moon, Zap } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../context/AuthContext';
-import GooeyNav from './GooeyNav';
+import { Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { theme, toggleTheme } = useTheme();
-  const { user } = useAuth();
-
+  const [activeHash, setActiveHash] = useState('');
+  const location = useLocation();
 
   useEffect(() => {
+    const updateLocationState = () => {
+      setScrolled(window.scrollY > 10);
+      setActiveHash(window.location.hash);
+    };
+
+    updateLocationState();
     const onScroll = () => setScrolled(window.scrollY > 10);
+    const onHashChange = () => setActiveHash(window.location.hash);
     window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener('hashchange', onHashChange);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('hashchange', onHashChange);
+    };
   }, []);
 
   const links = [
-    { label: 'Services', href: '#services' },
+    { label: 'Home', href: '/' },
+    { label: 'About Us', href: '#about' },
     { label: 'How We Work', href: '#how-we-work' },
-    { label: 'Portfolio', href: '#portfolio' },
-    { label: 'Team', href: '#team' },
+    { label: 'Services', href: '#services' },
+    { label: 'Testimonials', href: '#testimonials' },
     { label: 'Contact', href: '#contact' },
   ];
 
+  const isActive = (href: string) => {
+    if (href === '/' && location.pathname === '/' && activeHash === '') return true;
+    if (href !== '/' && activeHash === href) return true;
+    return false;
+  };
+
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
+    <nav className={`fixed left-0 right-0 top-0 w-full z-50 transition-all duration-300 ${
       scrolled 
-        ? 'bg-white/90 dark:bg-[#0a0f1a]/90 backdrop-blur-lg shadow-lg shadow-black/5 dark:shadow-black/20 border-b border-slate-200/80 dark:border-slate-800/80' 
-        : 'bg-transparent'
+        ? 'bg-white shadow-md' 
+        : 'bg-white shadow-sm'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 py-3">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="relative flex items-center h-16">
           
           {/* Logo */}
           <Link 
             to="/" 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-2.5 group transition-all"
+            className="flex shrink-0 items-center"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center shadow-md group-hover:shadow-blue-500/25 group-hover:-translate-y-0.5 transition-all">
-              <Zap className="w-4 h-4 text-white" />
-            </div>
-            <span className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
-              Yari<span className="text-blue-600">Hub</span>
-            </span>
+            <img src="/logo.png" alt="YariHub" className="h-9 sm:h-10 w-auto" />
           </Link>
 
           {/* Desktop nav links */}
-          <div className="hidden md:flex items-center">
-            <GooeyNav items={links} />
+          <div className="absolute left-1/2 hidden -translate-x-1/2 xl:flex items-center gap-10 2xl:gap-12">
+            {links.map(link => (
+              <a
+                key={link.label}
+                href={link.href}
+                className={`whitespace-nowrap text-sm font-medium transition-colors ${
+                  isActive(link.href)
+                    ? 'text-[#106FF4]'
+                    : 'text-[#162E93] hover:text-[#106FF4]'
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
 
           {/* Right actions */}
-          <div className="hidden md:flex items-center gap-3">
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              className="w-9 h-9 rounded-lg flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          <div className="hidden xl:flex items-center ml-auto">
+            <a
+              href="#contact"
+              className="inline-flex items-center px-6 py-2 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90"
+              style={{ backgroundColor: '#162E93' }}
             >
-              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
-            <Link
-              to={user ? "/admin/dashboard" : "/login"}
-              className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
-            >
-              {user ? 'Dashboard' : 'Login'}
-            </Link>
-            {user ? (
-              <Link
-                to="/admin/dashboard"
-                className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 shadow-md shadow-blue-500/25 transition-all hover:shadow-blue-500/40 hover:-translate-y-0.5"
-              >
-                Go to Console
-              </Link>
-            ) : (
-              <a
-                href="#contact"
-                className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 shadow-md shadow-blue-500/25 transition-all hover:shadow-blue-500/40 hover:-translate-y-0.5"
-              >
-                Get Started
-              </a>
-            )}
+              Get Started
+            </a>
           </div>
 
-          {/* Mobile: theme toggle + hamburger */}
-          <div className="md:hidden flex items-center gap-2">
-            <button
-              onClick={toggleTheme}
-              className="w-9 h-9 rounded-lg flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-            >
-              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
-            <button onClick={() => setIsOpen(!isOpen)} className="w-9 h-9 flex items-center justify-center rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+          {/* Mobile: hamburger */}
+          <div className="ml-auto xl:hidden">
+            <button onClick={() => setIsOpen(!isOpen)} className="w-9 h-9 flex items-center justify-center rounded-lg text-[#162E93] hover:bg-gray-100 transition-colors">
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
@@ -103,42 +98,30 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-white dark:bg-[#0a0f1a] border-t border-slate-200 dark:border-slate-800 px-4 pt-4 pb-6 space-y-1">
+        <div className="xl:hidden bg-white border-t border-gray-200 px-4 pt-4 pb-6 space-y-1">
           {links.map(link => (
             <a
               key={link.label}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                isActive(link.href)
+                  ? 'text-[#106FF4] bg-blue-50'
+                  : 'text-[#162E93] hover:bg-gray-100'
+              }`}
             >
               {link.label}
             </a>
           ))}
-          <div className="pt-3 flex flex-col gap-2 border-t border-slate-200 dark:border-slate-800 mt-3">
-            <Link 
-              to={user ? "/admin/dashboard" : "/login"} 
+          <div className="pt-3 border-t border-gray-200 mt-3">
+            <a 
+              href="#contact" 
               onClick={() => setIsOpen(false)}
-              className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90"
+              style={{ backgroundColor: '#162E93' }}
             >
-              {user ? 'Dashboard' : 'Login'}
-            </Link>
-            {user ? (
-              <Link 
-                to="/admin/dashboard" 
-                onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-violet-600"
-              >
-                Go to Console
-              </Link>
-            ) : (
-              <a 
-                href="#contact" 
-                onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-violet-600"
-              >
-                Get Started
-              </a>
-            )}
+              Get Started
+            </a>
           </div>
         </div>
       )}

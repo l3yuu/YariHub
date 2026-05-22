@@ -45,6 +45,23 @@ const SelectedWork = () => {
     }
   ]);
   const [loading, setLoading] = useState(true);
+  const [folderSize, setFolderSize] = useState(2.2);
+
+  useEffect(() => {
+    const updateFolderSize = () => {
+      if (window.innerWidth < 640) {
+        setFolderSize(1.65);
+      } else if (window.innerWidth < 1024) {
+        setFolderSize(1.95);
+      } else {
+        setFolderSize(2.2);
+      }
+    };
+
+    updateFolderSize();
+    window.addEventListener('resize', updateFolderSize);
+    return () => window.removeEventListener('resize', updateFolderSize);
+  }, []);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -57,7 +74,7 @@ const SelectedWork = () => {
             setProjects(visibleData);
           }
         }
-      } catch (err) {
+      } catch {
         console.error('Failed to fetch projects');
       } finally {
         setLoading(false);
@@ -68,7 +85,7 @@ const SelectedWork = () => {
   }, []);
 
   return (
-    <section id="portfolio" className="py-24 bg-transparent overflow-hidden">
+    <section id="portfolio" className="py-16 sm:py-20 lg:py-24 bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -76,11 +93,11 @@ const SelectedWork = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-20 gap-4"
+          className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 sm:mb-16 lg:mb-20 gap-4"
         >
           <div>
             <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-3">Portfolio</p>
-            <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Selected Work
             </h2>
           </div>
@@ -103,7 +120,7 @@ const SelectedWork = () => {
             <p className="text-slate-500 dark:text-slate-400">Our amazing projects are coming soon.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-24 gap-x-12 pt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 sm:gap-y-20 lg:gap-y-24 gap-x-8 lg:gap-x-12 pt-4 sm:pt-8 lg:pt-10">
             {projects.slice(0, 6).map((project, i) => (
               <motion.div
                 key={project._id}
@@ -115,7 +132,7 @@ const SelectedWork = () => {
               >
                 <div className="relative mb-6">
                   <Folder
-                    size={2.2}
+                    size={folderSize}
                     color={i % 2 === 0 ? '#3b82f6' : '#8b5cf6'}
                     items={[
                       <div className="w-full h-full p-2 flex flex-col justify-center items-center bg-white">
