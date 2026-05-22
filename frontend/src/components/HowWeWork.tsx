@@ -79,7 +79,7 @@ const HowWeWork = () => {
           </motion.h2>
         </motion.div>
 
-        <div className="mt-20 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        <div className="mt-10 grid gap-5 sm:mt-16 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4 lg:gap-6">
           {steps.map((step, index) => {
             const Icon = step.icon;
             const cardClasses = step.highlighted
@@ -105,7 +105,7 @@ const HowWeWork = () => {
                   rotateY: index % 2 === 0 ? -7 : 7,
                   scale: 1.025,
                 }}
-                className={`group flex min-h-[360px] flex-col rounded-2xl border px-5 py-8 transition-colors sm:min-h-[390px] lg:min-h-[430px] ${cardClasses}`}
+                className={`group flex min-h-[280px] flex-col rounded-2xl border px-5 py-6 transition-colors sm:min-h-[340px] lg:min-h-[430px] ${cardClasses}`}
                 style={{ transformPerspective: 1100, transformStyle: 'preserve-3d' }}
               >
                 <motion.div
@@ -126,7 +126,7 @@ const HowWeWork = () => {
                 </motion.h3>
 
                 <motion.p
-                  className={`mt-3 max-w-[17rem] text-sm font-normal leading-relaxed ${
+                  className={`mt-3 text-sm font-normal leading-relaxed ${
                     step.highlighted ? 'text-white' : 'text-[#00184A]'
                   }`}
                   style={{ translateZ: 30 }}
