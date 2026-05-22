@@ -1,37 +1,26 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
-const testimonialSchema = new mongoose.Schema({
-  authorName: {
-    type: String,
-    required: [true, 'Please add an author name']
+export interface ITestimonial extends Document {
+  name: string;
+  role: string;
+  company: string;
+  quote: string;
+  rating: number;
+  isVisible: boolean;
+}
+
+const TestimonialSchema: Schema = new Schema(
+  {
+    name: { type: String, required: true },
+    role: { type: String, default: '' },
+    company: { type: String, default: '' },
+    quote: { type: String, required: true },
+    rating: { type: Number, min: 1, max: 5, default: 5 },
+    isVisible: { type: Boolean, default: true },
   },
-  authorRole: {
-    type: String,
-    required: [true, 'Please add an author role']
-  },
-  authorImage: {
-    type: String,
-    default: 'https://i.pravatar.cc/150'
-  },
-  content: {
-    type: String,
-    required: [true, 'Please add content']
-  },
-  rating: {
-    type: Number,
-    required: [true, 'Please add a rating'],
-    min: 1,
-    max: 5
-  },
-  status: {
-    type: String,
-    enum: ['APPROVED', 'HIDDEN'],
-    default: 'APPROVED'
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
+  {
+    timestamps: true,
   }
-});
+);
 
-export default mongoose.model('Testimonial', testimonialSchema);
+export default mongoose.model<ITestimonial>('Testimonial', TestimonialSchema);

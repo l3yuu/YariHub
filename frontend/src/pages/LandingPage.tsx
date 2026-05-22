@@ -5,7 +5,6 @@ import HowWeWork from '../components/HowWeWork';
 import Services from '../components/Services';
 import SelectedWork from '../components/SelectedWork';
 import Team from '../components/Team';
-import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import SoftAurora from '../components/SoftAurora';
@@ -40,7 +39,6 @@ const LandingPage = () => {
           <Services />
           <SelectedWork />
           <Team />
-          <Testimonials />
           <Contact />
         </main>
         <Footer />
