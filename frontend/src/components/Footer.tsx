@@ -36,28 +36,28 @@ const socialLinks = [
 const Footer = () => {
   return (
     <footer className="bg-white font-sans text-[#071d3c]">
-      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-8 py-16 sm:px-12 md:grid-cols-[1.45fr_0.7fr_0.75fr_1fr] md:gap-14 lg:px-[50px] lg:pb-[58px] lg:pt-[154px]">
-        <div className="flex min-h-[268px] flex-col justify-between gap-10">
+      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-5 py-12 sm:grid-cols-2 sm:px-8 sm:py-14 md:gap-12 lg:grid-cols-[1.45fr_0.7fr_0.75fr_1fr] lg:gap-14 lg:px-[50px] lg:pb-[58px] lg:pt-[154px]">
+        <div className="flex min-h-0 flex-col justify-between gap-8 sm:col-span-2 lg:col-span-1 lg:min-h-[268px] lg:gap-10">
           <div>
             <a href="#" aria-label="Yari Hub home" className="inline-flex w-fit">
-              <img src="/logo.png" alt="Yari Hub IT Solutions" className="h-auto w-[205px]" />
+              <img src="/logo.png" alt="Yari Hub IT Solutions" className="h-auto w-[170px] sm:w-[190px] lg:w-[205px]" />
             </a>
-            <p className="mt-6 max-w-[342px] font-['Sora'] text-[15px] font-extralight leading-[20px] tracking-[0] text-[#071d3c]">
+            <p className="mt-5 max-w-[420px] font-['Sora'] text-[14px] font-extralight leading-[20px] tracking-[0] text-[#071d3c] sm:text-[15px] lg:max-w-[342px]">
               YariHub is a collaborative freelance studio based in the Philippines, focused on
               delivering practical and well-crafted digital solutions.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-[22px] sm:pl-[15px]">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 lg:gap-[22px] lg:pl-[15px]">
             {socialLinks.map((social) => (
               <a
                 key={social.label}
                 href={social.href}
                 aria-label={social.label}
-                className="grid h-[53px] w-[58px] place-items-center rounded-[8px] border border-[#cfd2d7] bg-[#e8e8e8] shadow-[inset_0_0_0_3px_#d9d9d9] transition-transform hover:-translate-y-0.5"
+                className="grid h-[48px] w-[52px] place-items-center rounded-[8px] border border-[#cfd2d7] bg-[#e8e8e8] shadow-[inset_0_0_0_3px_#d9d9d9] transition-transform hover:-translate-y-0.5 sm:h-[53px] sm:w-[58px]"
               >
                 <span
-                  className={`grid h-[36px] w-[36px] place-items-center overflow-hidden rounded-[7px] ${social.className}`}
+                  className={`grid h-[34px] w-[34px] place-items-center overflow-hidden rounded-[7px] sm:h-[36px] sm:w-[36px] ${social.className}`}
                 >
                   {social.icon}
                 </span>
@@ -70,13 +70,13 @@ const Footer = () => {
         <FooterColumn title="Services" links={serviceLinks} />
 
         <div className="lg:pl-[4px]">
-          <h2 className="mb-[14px] text-[20px] font-extrabold uppercase leading-none tracking-[-0.01em] text-[#071d3c]">
+          <h2 className="mb-3 text-[18px] font-extrabold uppercase leading-none tracking-[-0.01em] text-[#071d3c] sm:text-[20px] lg:mb-[14px]">
             Newsletter
           </h2>
-          <p className="mb-[19px] max-w-[300px] text-[19px] font-medium leading-[1.05] tracking-[0] text-[#071d3c]">
+          <p className="mb-4 max-w-[300px] text-[16px] font-medium leading-[1.25] tracking-[0] text-[#071d3c] sm:text-[18px] lg:mb-[19px] lg:text-[19px] lg:leading-[1.05]">
             Stay updated with our latest news and tech insights.
           </p>
-          <form className="flex h-[43px] w-full max-w-[239px] overflow-hidden rounded-[9px] bg-[#176ef2] shadow-[0_3px_8px_rgba(0,0,0,0.3)]">
+          <form className="flex h-[43px] w-full max-w-[320px] overflow-hidden rounded-[9px] bg-[#176ef2] shadow-[0_3px_8px_rgba(0,0,0,0.3)] lg:max-w-[239px]">
             <input
               type="email"
               aria-label="Email address"
@@ -95,7 +95,7 @@ const Footer = () => {
       </div>
 
       <div className="bg-[#176ef2] text-[#d9d9d9]">
-        <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-4 px-8 py-[33px] text-center text-[22px] font-normal leading-none sm:px-12 md:flex-row md:text-left lg:px-[90px]">
+        <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-3 px-5 py-6 text-center text-[14px] font-normal leading-[1.35] sm:px-8 sm:text-[16px] md:flex-row md:flex-wrap md:text-left lg:flex-nowrap lg:px-[90px] lg:py-[33px] lg:text-[22px] lg:leading-none">
           <p>© 2026 Company. All rights reserved.</p>
           <a href="#" className="transition-colors hover:text-white">
             Privacy Policy
@@ -119,10 +119,10 @@ type FooterColumnProps = {
 
 const FooterColumn = ({ title, links }: FooterColumnProps) => (
   <div>
-    <h2 className="mb-[25px] text-[20px] font-extrabold uppercase leading-none tracking-[-0.01em] text-[#071d3c]">
+    <h2 className="mb-4 text-[18px] font-extrabold uppercase leading-none tracking-[-0.01em] text-[#071d3c] sm:text-[20px] lg:mb-[25px]">
       {title}
     </h2>
-    <ul className="space-y-[18px] text-[19px] font-medium leading-none tracking-[0] text-[#071d3c]">
+    <ul className="space-y-3 text-[16px] font-medium leading-none tracking-[0] text-[#071d3c] sm:text-[18px] lg:space-y-[18px] lg:text-[19px]">
       {links.map((link) => (
         <li key={link}>
           <a href="#" className="transition-colors hover:text-[#176ef2]">
