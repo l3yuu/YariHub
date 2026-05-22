@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { user } = useAuth();
   const location = useLocation();
 
   useEffect(() => {
@@ -37,7 +34,7 @@ const Navbar = () => {
         ? 'bg-white shadow-lg' 
         : 'bg-white'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           
           {/* Logo */}
