@@ -1,5 +1,5 @@
 import { FaLinkedinIn } from 'react-icons/fa6';
-import { SiGithub, SiGmail, SiInstagram, SiX } from 'react-icons/si';
+import { SiFacebook, SiGithub, SiGmail, SiInstagram } from 'react-icons/si';
 
 const companyLinks = ['About Us', 'Careers', 'Blog', 'Documentation', 'Support'];
 
@@ -26,10 +26,10 @@ const socialLinks = [
     className: 'text-black bg-white',
   },
   {
-    label: 'X',
+    label: 'Facebook',
     href: '#',
-    icon: <SiX className="h-[27px] w-[27px]" />,
-    className: 'text-black bg-white',
+    icon: <SiFacebook className="h-[27px] w-[27px]" />,
+    className: 'text-[#1877f2] bg-white',
   },
 ];
 
