@@ -41,6 +41,7 @@ const LandingPage = () => {
           <Services />
 
           <Team />
+          <Testimonials />
           <Contact />
         </main>
         <Footer />
