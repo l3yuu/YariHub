@@ -44,7 +44,7 @@ const Testimonials = () => {
           // Only show approved ones on landing page
           setTestimonials(data.filter((t: Testimonial) => t.status === 'APPROVED'));
         }
-      } catch (err) {
+      } catch {
         console.error('Failed to fetch testimonials');
       } finally {
         setLoading(false);
@@ -54,14 +54,14 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section className="py-24 bg-transparent relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-blue-50/80 dark:from-blue-900/20 to-transparent blur-3xl pointer-events-none" />
+    <section id="testimonials" className="py-16 sm:py-20 lg:py-24 bg-transparent relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[240px] sm:h-[300px] bg-gradient-to-b from-blue-50/80 dark:from-blue-900/20 to-transparent blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-3">Testimonials</p>
-          <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">Trusted by Innovators</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">Trusted by Innovators</h2>
           <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-base">
             From students to SME owners — here's what they say about working with YariHub.
           </p>
@@ -72,13 +72,13 @@ const Testimonials = () => {
             <Loader2 className="w-10 h-10 animate-spin text-blue-500" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
             {testimonials.map((testimonial) => {
               const theme = getGradient(testimonial._id);
               return (
                 <div
                   key={testimonial._id}
-                  className={`relative bg-white dark:bg-slate-800/60 border-t-2 ${theme.light} ${theme.dark} border-l border-r border-b border-slate-200 dark:border-slate-700/60 rounded-2xl p-7 group hover:-translate-y-1 transition-transform duration-300 shadow-sm hover:shadow-lg dark:hover:shadow-slate-900/50`}
+                  className={`relative bg-white dark:bg-slate-800/60 border-t-2 ${theme.light} ${theme.dark} border-l border-r border-b border-slate-200 dark:border-slate-700/60 rounded-2xl p-5 sm:p-7 group hover:-translate-y-1 transition-transform duration-300 shadow-sm hover:shadow-lg dark:hover:shadow-slate-900/50`}
                 >
                   {/* Large quote mark */}
                   <span className="absolute top-4 right-5 text-7xl font-serif text-slate-200 dark:text-slate-700/50 leading-none select-none">"</span>

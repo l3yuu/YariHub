@@ -5,12 +5,25 @@ import { Link, useLocation } from 'react-router-dom';
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeHash, setActiveHash] = useState('');
   const location = useLocation();
 
   useEffect(() => {
+    const updateLocationState = () => {
+      setScrolled(window.scrollY > 10);
+      setActiveHash(window.location.hash);
+    };
+
+    updateLocationState();
     const onScroll = () => setScrolled(window.scrollY > 10);
+    const onHashChange = () => setActiveHash(window.location.hash);
     window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener('hashchange', onHashChange);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('hashchange', onHashChange);
+    };
   }, []);
 
   const links = [
@@ -23,36 +36,36 @@ const Navbar = () => {
   ];
 
   const isActive = (href: string) => {
-    if (href === '/' && location.pathname === '/') return true;
-    if (href !== '/' && (location.pathname.includes(href) || window.location.hash.includes(href))) return true;
+    if (href === '/' && location.pathname === '/' && activeHash === '') return true;
+    if (href !== '/' && activeHash === href) return true;
     return false;
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
+    <nav className={`fixed left-0 right-0 top-0 w-full z-50 transition-all duration-300 ${
       scrolled 
-        ? 'bg-white shadow-lg' 
-        : 'bg-white'
+        ? 'bg-white shadow-md' 
+        : 'bg-white shadow-sm'
     }`}>
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="relative flex items-center h-16">
           
           {/* Logo */}
           <Link 
             to="/" 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center"
+            className="flex shrink-0 items-center"
           >
-            <img src="/logo.png" alt="YariHub" className="h-10 w-auto" />
+            <img src="/logo.png" alt="YariHub" className="h-9 sm:h-10 w-auto" />
           </Link>
 
           {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="absolute left-1/2 hidden -translate-x-1/2 xl:flex items-center gap-10 2xl:gap-12">
             {links.map(link => (
               <a
                 key={link.label}
                 href={link.href}
-                className={`text-sm font-medium transition-colors ${
+                className={`whitespace-nowrap text-sm font-medium transition-colors ${
                   isActive(link.href)
                     ? 'text-[#106FF4]'
                     : 'text-[#162E93] hover:text-[#106FF4]'
@@ -64,7 +77,7 @@ const Navbar = () => {
           </div>
 
           {/* Right actions */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden xl:flex items-center ml-auto">
             <a
               href="#contact"
               className="inline-flex items-center px-6 py-2 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90"
@@ -75,7 +88,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile: hamburger */}
-          <div className="md:hidden">
+          <div className="ml-auto xl:hidden">
             <button onClick={() => setIsOpen(!isOpen)} className="w-9 h-9 flex items-center justify-center rounded-lg text-[#162E93] hover:bg-gray-100 transition-colors">
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -85,7 +98,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200 px-4 pt-4 pb-6 space-y-1">
+        <div className="xl:hidden bg-white border-t border-gray-200 px-4 pt-4 pb-6 space-y-1">
           {links.map(link => (
             <a
               key={link.label}

@@ -17,7 +17,7 @@ const Team = () => {
   const { theme } = useTheme();
 
   return (
-    <section id="team" className="py-24 bg-transparent relative overflow-hidden transition-colors duration-300">
+    <section id="team" className="py-16 sm:py-20 lg:py-24 bg-transparent relative overflow-hidden transition-colors duration-300">
       <style>{`
         @keyframes infinite-scroll {
           from { transform: translateX(0); }
@@ -33,7 +33,7 @@ const Team = () => {
       `}</style>
 
       {/* Header */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-16 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ const Team = () => {
           transition={{ duration: 0.6 }}
         >
           <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-3">The Minds Behind YariHub</p>
-          <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">Meet Our Team</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">Meet Our Team</h2>
           <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-base">
             A diverse group of innovators, designers, and engineers dedicated to building the future of digital solutions.
           </p>
@@ -49,7 +49,7 @@ const Team = () => {
       </div>
 
       {/* Profile Card Carousel - Infinite Scroll */}
-      <div className="w-full overflow-hidden pb-12 pt-4 relative flex">
+      <div className="w-full overflow-hidden pb-8 sm:pb-12 pt-4 relative flex">
         {/* Left gradient fade */}
         <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-24 bg-gradient-to-r from-slate-50 dark:from-[#0a0f1a] to-transparent z-10 pointer-events-none" />
         
@@ -57,7 +57,7 @@ const Team = () => {
           {/* Group 1 */}
           <div className="flex gap-6 sm:gap-8 px-3 sm:px-4 flex-none">
             {teamMembers.map((member, idx) => (
-              <div key={`g1-${idx}`} className="flex-none w-[240px] sm:w-[280px]">
+              <div key={`g1-${idx}`} className="flex-none w-[220px] sm:w-[260px] lg:w-[280px]">
                 <ProfileCard
                   {...member}
                   enableTilt={true}
@@ -72,7 +72,7 @@ const Team = () => {
           {/* Group 2 (Duplicate for seamless loop) */}
           <div className="flex gap-6 sm:gap-8 px-3 sm:px-4 flex-none" aria-hidden="true">
             {teamMembers.map((member, idx) => (
-              <div key={`g2-${idx}`} className="flex-none w-[240px] sm:w-[280px]">
+              <div key={`g2-${idx}`} className="flex-none w-[220px] sm:w-[260px] lg:w-[280px]">
                 <ProfileCard
                   {...member}
                   enableTilt={true}
