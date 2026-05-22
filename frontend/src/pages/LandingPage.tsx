@@ -3,7 +3,7 @@ import Hero from '../components/Hero';
 import AboutHero from '../components/AboutHero';
 import HowWeWork from '../components/HowWeWork';
 import Services from '../components/Services';
-import SelectedWork from '../components/SelectedWork';
+
 import Team from '../components/Team';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
@@ -38,7 +38,7 @@ const LandingPage = () => {
           <AboutHero />
           <HowWeWork />
           <Services />
-          <SelectedWork />
+
           <Team />
           <Testimonials />
           <Contact />

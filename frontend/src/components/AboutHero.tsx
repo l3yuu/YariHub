@@ -148,7 +148,7 @@ const AboutHero = () => {
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.4 }}
                   whileHover={{ y: -8, rotateX: 8, rotateY: index === 0 ? -8 : 8, scale: 1.03 }}
-                  className="rounded-2xl border-[8px] border-[#0E6AF3] bg-white p-4 shadow-[inset_0_0_0_2px_rgba(14,106,243,0.16)]"
+                  className="rounded-2xl border-4 sm:border-[8px] border-[#0E6AF3] bg-white p-4 shadow-[inset_0_0_0_2px_rgba(14,106,243,0.16)]"
                   style={{ transformPerspective: 900, transformStyle: 'preserve-3d' }}
                 >
                   <div className="flex items-center gap-4">
@@ -171,7 +171,7 @@ const AboutHero = () => {
       </section>
 
       <section className="relative isolate bg-white text-[#00184A]">
-        <div className="relative aspect-[1441/1024] min-h-[620px] w-full overflow-hidden sm:min-h-0">
+        <div className="relative aspect-[1441/1024] min-h-[480px] w-full overflow-hidden sm:min-h-[560px] lg:min-h-0">
           <motion.img
             src={triangle}
             alt=""
@@ -240,7 +240,7 @@ const AboutHero = () => {
       <section className="bg-white px-4 py-20 text-[#00184A] sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div className="mb-14 flex flex-col items-center text-center">
-            <h2 className="font-['Poppins',sans-serif] text-[clamp(2.25rem,6vw,4rem)] font-bold uppercase leading-none tracking-[0.28em] text-[#0E6AF3]">
+            <h2 className="font-['Poppins',sans-serif] text-[clamp(2.25rem,6vw,4rem)] font-bold uppercase leading-none tracking-[0.08em] sm:tracking-[0.18em] lg:tracking-[0.28em] text-[#0E6AF3]">
               Core Values
             </h2>
             <div className="mt-3 h-0.5 w-full max-w-md bg-[#0E6AF3]" aria-hidden="true" />
