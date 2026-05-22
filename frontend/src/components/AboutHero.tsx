@@ -1,7 +1,6 @@
 import { motion, type Variants } from 'framer-motion';
 import { Layers, Users } from 'lucide-react';
-import rectangleBottom from '../assets/rectangle1.png';
-import rectangleRight from '../assets/Rectangle2.png';
+import rectangleBg from '../assets/rectangle.png';
 import triangle from '../assets/triangle.png';
 
 const statCards = [
@@ -74,24 +73,14 @@ const AboutHero = () => {
     <>
       <section id="about" className="relative min-h-[calc(100svh-4rem)] overflow-hidden bg-white text-[#00184A]">
         <motion.img
-          src={rectangleRight}
+          src={rectangleBg}
           alt=""
           aria-hidden="true"
-          initial={{ opacity: 0, x: 80, rotateY: -14 }}
-          whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-none absolute right-0 top-0 hidden h-[68%] w-auto max-w-none object-contain lg:block"
-        />
-        <motion.img
-          src={rectangleBottom}
-          alt=""
-          aria-hidden="true"
-          initial={{ opacity: 0, y: 70 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 1.02 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-[34%] w-full object-cover sm:h-[40%] lg:h-[42%]"
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-right-bottom"
         />
 
         <div className="relative z-10 mx-auto flex min-h-[calc(100svh-4rem)] w-full max-w-7xl items-center px-4 py-16 sm:px-6 lg:px-8">

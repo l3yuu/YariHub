@@ -88,7 +88,7 @@ const Services = () => {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-fill"
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-top lg:object-fill"
         />
 
         <div className="relative z-10 grid grid-cols-1 items-start gap-0 px-[clamp(1.25rem,4vw,4rem)] pt-[clamp(1.5rem,6vh,5rem)] pb-[clamp(1.5rem,4vh,3rem)] lg:min-h-[calc(100svh-4rem)] lg:grid-cols-[55%_45%]">
@@ -101,13 +101,13 @@ const Services = () => {
               style={{ transformPerspective: 1200, transformStyle: 'preserve-3d' }}
             >
               <motion.h2
-                className="font-['Poppins',sans-serif] text-[clamp(2.2rem,5vw,4.5rem)] font-semibold leading-[0.92] tracking-normal text-white sm:whitespace-nowrap"
+                className="font-['Poppins',sans-serif] text-[clamp(1.8rem,5vw,4.5rem)] font-semibold leading-[0.92] tracking-normal text-white sm:whitespace-nowrap"
                 style={{ translateZ: 54, textShadow: '0 2px 0 rgba(0,24,74,0.16)' }}
               >
                 Our Services
               </motion.h2>
               <motion.p
-                className="mt-2 max-w-md font-['Poppins',sans-serif] text-[clamp(0.82rem,1.45vw,1.15rem)] font-normal leading-tight text-white"
+                className="mt-2 max-w-md font-['Poppins',sans-serif] text-xs font-normal leading-tight text-white sm:text-sm lg:text-[clamp(0.82rem,1.45vw,1.15rem)]"
                 style={{ translateZ: 34 }}
               >
                 End-to-end digital solutions tailored for Filipino businesses at every stage.
@@ -127,7 +127,7 @@ const Services = () => {
                   viewport={{ once: true, amount: 0.35 }}
                   whileHover={{ y: -5, rotateX: 8, scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
-                  className={`rounded-xl bg-white px-4 py-2 font-['Poppins',sans-serif] text-[clamp(0.75rem,1vw,0.95rem)] font-bold text-[#0E6AF3] shadow-[0_4px_10px_rgba(0,24,74,0.28)] sm:px-6 sm:py-2.5 ${
+                  className={`rounded-xl bg-white px-3 py-1.5 font-['Poppins',sans-serif] text-xs font-bold text-[#0E6AF3] shadow-[0_4px_10px_rgba(0,24,74,0.28)] sm:px-5 sm:py-2 lg:px-6 lg:py-2.5 lg:text-sm ${
                     activeService.id === service.id ? 'ring-2 ring-white ring-offset-2 ring-offset-[#0E6AF3]' : ''
                   }`}
                   style={{ transformPerspective: 900, transformStyle: 'preserve-3d' }}
@@ -147,12 +147,12 @@ const Services = () => {
                 className="mt-6 max-w-[38rem] text-center sm:mt-8 lg:mt-[clamp(7rem,18vh,13rem)] lg:text-left"
               >
                 <h3
-                  className="font-['Poppins',sans-serif] text-[clamp(1.8rem,4.8vw,4.2rem)] font-bold leading-none tracking-normal text-[#0E6AF3]"
+                  className="font-['Poppins',sans-serif] text-2xl font-bold leading-none tracking-normal text-[#0E6AF3] sm:text-3xl lg:text-[clamp(2.4rem,4.8vw,4.2rem)]"
                 >
                   {activeService.title}
                 </h3>
                 <p
-                  className="mt-3 font-['Poppins',sans-serif] text-[clamp(0.88rem,1.5vw,1.25rem)] font-normal leading-relaxed text-[#00184A] sm:mt-5"
+                  className="mt-2 font-['Poppins',sans-serif] text-sm font-normal leading-relaxed text-[#00184A] sm:mt-4 sm:text-base lg:text-lg"
                 >
                   {activeService.description}
                 </p>
@@ -166,7 +166,7 @@ const Services = () => {
               viewport={{ once: true, amount: 0.4 }}
               whileHover={{ x: 4, y: -3 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-5 inline-flex items-center font-['Poppins',sans-serif] text-sm font-medium text-[#0E6AF3] sm:mt-8"
+              className="mt-4 inline-flex items-center font-['Poppins',sans-serif] text-sm font-medium text-[#0E6AF3] sm:mt-6 lg:mt-8"
             >
               Learn more <ArrowUpRight className="ml-1 inline h-3.5 w-3.5" />
             </motion.a>
@@ -179,7 +179,7 @@ const Services = () => {
             transition={{ duration: 0.85, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             onMouseMove={handlePhoneMove}
             onMouseLeave={resetPhoneTilt}
-            className="flex items-center justify-center cursor-grab active:cursor-grabbing mt-6 lg:mt-0 lg:max-h-[calc(100svh-6rem)] self-center"
+            className="flex items-center justify-center cursor-grab active:cursor-grabbing mt-4 sm:mt-6 lg:mt-0 lg:max-h-[calc(100svh-6rem)] self-center"
             style={{ transformPerspective: 1400, transformStyle: 'preserve-3d' }}
           >
             <AnimatePresence mode="wait">
@@ -193,7 +193,7 @@ const Services = () => {
                   animate={{ opacity: 1, scale: 1, rotateY: 0, y: [0, -10, 0] }}
                   exit={{ opacity: 0, scale: 0.92, rotateY: 12 }}
                   transition={{ duration: 0.45, y: { duration: 4.5, repeat: Infinity, ease: 'easeInOut' } }}
-                  className="h-auto w-full max-w-[14rem] sm:max-w-[18rem] lg:max-w-[clamp(16rem,26vw,26rem)] max-h-[50vh] lg:max-h-[calc(100svh-8rem)] object-contain"
+                  className="h-auto w-full max-w-[10rem] sm:max-w-[14rem] lg:max-w-[clamp(16rem,26vw,26rem)] max-h-[35vh] sm:max-h-[40vh] lg:max-h-[calc(100svh-8rem)] object-contain"
                   style={{ rotateX: smoothRotateX, rotateY: smoothRotateY, transformStyle: 'preserve-3d' }}
                 />
               ) : activeService.device === 'laptop' ? (
@@ -206,7 +206,7 @@ const Services = () => {
                   animate={{ opacity: 1, scale: 1, rotateY: 0, y: [0, -8, 0] }}
                   exit={{ opacity: 0, scale: 0.92, rotateY: 12 }}
                   transition={{ duration: 0.45, y: { duration: 4.8, repeat: Infinity, ease: 'easeInOut' } }}
-                  className="h-auto w-full max-w-[18rem] sm:max-w-[24rem] lg:max-w-[clamp(22rem,38vw,42rem)]"
+                  className="h-auto w-full max-w-[14rem] sm:max-w-[20rem] lg:max-w-[clamp(22rem,38vw,42rem)] max-h-[30vh] sm:max-h-[35vh] lg:max-h-none object-contain"
                   style={{ rotateX: smoothRotateX, rotateY: smoothRotateY, transformStyle: 'preserve-3d' }}
                 />
               ) : (
@@ -219,7 +219,7 @@ const Services = () => {
                   animate={{ opacity: 1, scale: 1, rotateY: 0, y: [0, -8, 0] }}
                   exit={{ opacity: 0, scale: 0.92, rotateY: 12 }}
                   transition={{ duration: 0.45, y: { duration: 4.8, repeat: Infinity, ease: 'easeInOut' } }}
-                  className="h-auto w-full max-w-[18rem] sm:max-w-[24rem] lg:max-w-[clamp(22rem,38vw,42rem)]"
+                  className="h-auto w-full max-w-[14rem] sm:max-w-[20rem] lg:max-w-[clamp(22rem,38vw,42rem)] max-h-[30vh] sm:max-h-[35vh] lg:max-h-none object-contain"
                   style={{ rotateX: smoothRotateX, rotateY: smoothRotateY, transformStyle: 'preserve-3d' }}
                 />
               )}
