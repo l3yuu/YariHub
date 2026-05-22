@@ -8,7 +8,7 @@ const serviceLinks = ['Web Development', 'Mobile Apps', 'System Dev', 'UI/UX Des
 const socialLinks = [
   {
     label: 'Instagram',
-    href: '#',
+    href: 'https://www.instagram.com/yarihubitsolutions/',
     icon: <SiInstagram className="h-[30px] w-[30px]" />,
     className:
       'text-white bg-[radial-gradient(circle_at_30%_105%,#fdf497_0%,#fdf497_5%,#fd5949_45%,#d6249f_60%,#285aeb_90%)]',
@@ -27,7 +27,7 @@ const socialLinks = [
   },
   {
     label: 'Facebook',
-    href: '#',
+    href: 'https://www.facebook.com/share/1CDKeAWiSe/',
     icon: <SiFacebook className="h-[27px] w-[27px]" />,
     className: 'text-[#1877f2] bg-white',
   },
