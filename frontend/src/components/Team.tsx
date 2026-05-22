@@ -3,59 +3,67 @@ import { motion } from 'framer-motion';
 
 const teamMembers = [
   {
-    name: 'Ara Nina Legaspi',
-    role: 'Business Analyst',
-    initials: 'AL',
-    bio: 'Turns business needs into clear requirements, priorities, and product direction.',
+    id: 'team-1',
+    name: 'John Doe',
+    role: 'Team Member',
+    initials: 'JD',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
     avatarTone: 'from-[#f5c7b8] via-[#f8ede8] to-[#9dc6a7]',
   },
   {
-    name: 'Leumar Binas',
-    role: 'Project Manager',
-    initials: 'LB',
-    bio: 'Keeps timelines clear, teams aligned, and client goals visible from kickoff to launch.',
+    id: 'team-2',
+    name: 'Jane Doe',
+    role: 'Team Member',
+    initials: 'JD',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
     avatarTone: 'from-[#f4d35e] via-[#f7efe1] to-[#d9897f]',
   },
   {
-    name: 'Christian John Jimenez',
-    role: 'Frontend Developer',
-    initials: 'CJ',
-    bio: 'Builds polished interfaces that feel responsive, approachable, and easy to use.',
+    id: 'team-3',
+    name: 'John Doe',
+    role: 'Team Member',
+    initials: 'JD',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
     avatarTone: 'from-[#d8c3a5] via-[#f5efe6] to-[#91b59c]',
   },
   {
-    name: 'Luigi Avila',
-    role: 'Frontend Developer',
-    initials: 'LA',
-    bio: 'Creates smooth user experiences with careful layouts, interactions, and frontend logic.',
+    id: 'team-4',
+    name: 'Jane Doe',
+    role: 'Team Member',
+    initials: 'JD',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
     avatarTone: 'from-[#e8b4bc] via-[#fff3e6] to-[#c5a46d]',
   },
   {
-    name: 'Lloyd Mangilog',
-    role: 'Backend Developer',
-    initials: 'LM',
-    bio: 'Designs secure services, database flows, and integrations that stay steady under load.',
+    id: 'team-5',
+    name: 'John Doe',
+    role: 'Team Member',
+    initials: 'JD',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
     avatarTone: 'from-[#c6d6b8] via-[#f5f1e8] to-[#c7876b]',
   },
   {
-    name: 'John Louise Ernest Denila',
-    role: 'Backend Developer',
+    id: 'team-6',
+    name: 'Jane Doe',
+    role: 'Team Member',
     initials: 'JD',
-    bio: 'Connects application logic, data models, and backend workflows into reliable systems.',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
     avatarTone: 'from-[#f0b7a4] via-[#fff1df] to-[#aabf8d]',
   },
   {
-    name: 'Jasmine Mikaella Aninion',
-    role: 'UI/UX Designer',
-    initials: 'JA',
-    bio: 'Shapes clean experiences that feel polished, usable, and easy to understand.',
+    id: 'team-7',
+    name: 'John Doe',
+    role: 'Team Member',
+    initials: 'JD',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
     avatarTone: 'from-[#d9c7a3] via-[#f8efe3] to-[#ba8b7c]',
   },
   {
-    name: 'Carlos Miguel Adem',
-    role: 'QA Engineer',
-    initials: 'CA',
-    bio: 'Tests core journeys closely so launches feel stable, clear, and ready for real users.',
+    id: 'team-8',
+    name: 'Jane Doe',
+    role: 'Team Member',
+    initials: 'JD',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
     avatarTone: 'from-[#d8b7d6] via-[#f8ece7] to-[#b5b071]',
   },
 ];
@@ -112,7 +120,7 @@ const Team = () => {
           transition={{ duration: 0.6 }}
         >
           <p className="text-[22px] font-extrabold leading-none tracking-[0] text-[#061f45] sm:text-[24px] md:text-[26px]">
-            Meet Our Team
+            What Our Customer Says
           </p>
           <p className="mt-3 max-w-[780px] text-[clamp(30px,8vw,46px)] font-light leading-[0.96] tracking-[0] text-black sm:leading-[0.92]">
             Powering innovation through seamless technology and customer success.
@@ -137,7 +145,7 @@ const Team = () => {
             <div className="flex gap-4 pr-4 sm:gap-5 sm:pr-5 lg:gap-6 lg:pr-6">
               {teamMembers.map((member) => (
                 <TeamCard
-                  key={member.name}
+                  key={member.id}
                   member={member}
                   onPause={() => setIsCarouselPaused(true)}
                   onResume={() => setIsCarouselPaused(false)}
@@ -147,7 +155,7 @@ const Team = () => {
             <div className="flex gap-4 pr-4 sm:gap-5 sm:pr-5 lg:gap-6 lg:pr-6" aria-hidden="true">
               {teamMembers.map((member) => (
                 <TeamCard
-                  key={`${member.name}-duplicate`}
+                  key={`${member.id}-duplicate`}
                   member={member}
                   onPause={() => setIsCarouselPaused(true)}
                   onResume={() => setIsCarouselPaused(false)}
