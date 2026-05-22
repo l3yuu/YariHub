@@ -1,7 +1,6 @@
 import { motion, type Variants } from 'framer-motion';
 import { Layers, Users } from 'lucide-react';
-import rectangleBottom from '../assets/rectangle1.png';
-import rectangleRight from '../assets/Rectangle2.png';
+import rectangleBg from '../assets/rectangle.png';
 import triangle from '../assets/triangle.png';
 
 const statCards = [
@@ -74,24 +73,14 @@ const AboutHero = () => {
     <>
       <section id="about" className="relative min-h-[calc(100svh-4rem)] overflow-hidden bg-white text-[#00184A]">
         <motion.img
-          src={rectangleRight}
+          src={rectangleBg}
           alt=""
           aria-hidden="true"
-          initial={{ opacity: 0, x: 80, rotateY: -14 }}
-          whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-none absolute right-0 top-0 hidden h-[68%] w-auto max-w-none object-contain lg:block"
-        />
-        <motion.img
-          src={rectangleBottom}
-          alt=""
-          aria-hidden="true"
-          initial={{ opacity: 0, y: 70 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 1.02 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-[34%] w-full object-cover sm:h-[40%] lg:h-[42%]"
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-right-bottom"
         />
 
         <div className="relative z-10 mx-auto flex min-h-[calc(100svh-4rem)] w-full max-w-7xl items-center px-4 py-16 sm:px-6 lg:px-8">
@@ -148,7 +137,7 @@ const AboutHero = () => {
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.4 }}
                   whileHover={{ y: -8, rotateX: 8, rotateY: index === 0 ? -8 : 8, scale: 1.03 }}
-                  className="rounded-2xl border-[8px] border-[#0E6AF3] bg-white p-4 shadow-[inset_0_0_0_2px_rgba(14,106,243,0.16)]"
+                  className="rounded-2xl border-4 sm:border-[8px] border-[#0E6AF3] bg-white p-4 shadow-[inset_0_0_0_2px_rgba(14,106,243,0.16)]"
                   style={{ transformPerspective: 900, transformStyle: 'preserve-3d' }}
                 >
                   <div className="flex items-center gap-4">
@@ -171,7 +160,7 @@ const AboutHero = () => {
       </section>
 
       <section className="relative isolate bg-white text-[#00184A]">
-        <div className="relative aspect-[1441/1024] min-h-[620px] w-full overflow-hidden sm:min-h-0">
+        <div className="relative aspect-[1441/1024] min-h-[480px] w-full overflow-hidden sm:min-h-[560px] lg:min-h-0">
           <motion.img
             src={triangle}
             alt=""
@@ -240,7 +229,7 @@ const AboutHero = () => {
       <section className="bg-white px-4 py-20 text-[#00184A] sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div className="mb-14 flex flex-col items-center text-center">
-            <h2 className="font-['Poppins',sans-serif] text-[clamp(2.25rem,6vw,4rem)] font-bold uppercase leading-none tracking-[0.28em] text-[#0E6AF3]">
+            <h2 className="font-['Poppins',sans-serif] text-[clamp(2.25rem,6vw,4rem)] font-bold uppercase leading-none tracking-[0.08em] sm:tracking-[0.18em] lg:tracking-[0.28em] text-[#0E6AF3]">
               Core Values
             </h2>
             <div className="mt-3 h-0.5 w-full max-w-md bg-[#0E6AF3]" aria-hidden="true" />

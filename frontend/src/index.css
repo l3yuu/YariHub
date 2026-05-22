@@ -173,3 +173,28 @@ canvas {
 .dark .card-hover:hover {
   box-shadow: 0 0 0 1px #2563eb55, 0 20px 40px -12px #2563eb33;
 }
+
+@keyframes team-carousel-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.team-carousel-track {
+  animation: team-carousel-right 34s linear infinite;
+}
+
+.team-carousel-track:hover,
+.team-carousel-track:has(.team-carousel-card:hover) {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-carousel-track {
+    animation: none;
+    transform: translateX(0);
+  }
+}

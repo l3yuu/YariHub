@@ -3,12 +3,13 @@ import Hero from '../components/Hero';
 import AboutHero from '../components/AboutHero';
 import HowWeWork from '../components/HowWeWork';
 import Services from '../components/Services';
-import SelectedWork from '../components/SelectedWork';
+
 import Team from '../components/Team';
-import Testimonials from '../components/Testimonials';
+
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import SoftAurora from '../components/SoftAurora';
+import Chatbot from '../components/Chatbot';
 
 const LandingPage = () => {
   return (
@@ -38,13 +39,14 @@ const LandingPage = () => {
           <AboutHero />
           <HowWeWork />
           <Services />
-          <SelectedWork />
+
           <Team />
-          <Testimonials />
+
           <Contact />
         </main>
         <Footer />
       </div>
+      <Chatbot />
     </div>
   );
 };

@@ -31,7 +31,6 @@ const Navbar = () => {
     { label: 'About Us', href: '#about' },
     { label: 'How We Work', href: '#how-we-work' },
     { label: 'Services', href: '#services' },
-    { label: 'Testimonials', href: '#testimonials' },
     { label: 'Contact', href: '#contact' },
   ];
 

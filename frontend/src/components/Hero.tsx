@@ -34,7 +34,7 @@ const Hero = () => {
         className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
       />
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-4rem)] w-full max-w-7xl flex-col items-center justify-start px-4 pb-32 pt-16 text-center sm:px-6 sm:pt-20 lg:px-8 lg:pt-24">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-4rem)] w-full max-w-7xl flex-col items-center justify-start px-4 pb-16 pt-16 text-center sm:px-6 sm:pb-24 sm:pt-20 lg:px-8 lg:pb-32 lg:pt-24">
         <motion.div
           variants={containerVariants}
           initial="hidden"

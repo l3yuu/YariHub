@@ -1,9 +1,9 @@
 import express from 'express';
-import { 
-  getTestimonials, 
-  createTestimonial, 
-  updateTestimonial, 
-  deleteTestimonial 
+import {
+  createTestimonial,
+  deleteTestimonial,
+  getTestimonials,
+  updateTestimonial,
 } from '../controllers/testimonialController.js';
 import { protect } from '../middleware/authMiddleware.js';
 
