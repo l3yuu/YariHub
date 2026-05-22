@@ -1,6 +1,7 @@
 import { useState, type MouseEvent } from 'react';
 import { AnimatePresence, motion, useMotionValue, useSpring, type Variants } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import hero4Bg from '../assets/hero4bg.png';
 import phone from '../assets/cp.png';
 import laptop from '../assets/laptop.png';
@@ -161,17 +162,12 @@ const Services = () => {
               </motion.div>
             </AnimatePresence>
 
-            <motion.a
-              href="#contact"
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              whileHover={{ x: 4, y: -3 }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-8 inline-flex items-center font-['Poppins',sans-serif] text-sm font-medium text-[#0E6AF3]"
+            <Link
+              to="/services"
+              className="mt-8 inline-flex items-center font-['Poppins',sans-serif] text-sm font-medium text-[#0E6AF3] transition-colors hover:text-[#0D5DD3]"
             >
               Learn more <ArrowUpRight className="ml-1 inline h-3.5 w-3.5" />
-            </motion.a>
+            </Link>
           </div>
 
           {/* Desktop device image */}
@@ -264,16 +260,12 @@ const Services = () => {
               </motion.div>
             </AnimatePresence>
 
-            <motion.a
-              href="#contact"
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-4 inline-flex items-center font-['Poppins',sans-serif] text-sm font-medium text-[#0E6AF3]"
+            <Link
+              to="/services"
+              className="mt-4 inline-flex items-center font-['Poppins',sans-serif] text-sm font-medium text-[#0E6AF3] transition-colors hover:text-[#0D5DD3]"
             >
               Learn more <ArrowUpRight className="ml-1 inline h-3.5 w-3.5" />
-            </motion.a>
+            </Link>
 
             {/* Mobile device image */}
             <div className="mt-6 flex justify-center">

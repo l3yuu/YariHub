@@ -3,7 +3,20 @@ import { useState } from 'react';
 import { SiGmail, SiViber } from 'react-icons/si';
 import API_URL from '../config';
 
-const serviceOptions = ['Web Development', 'Mobile App Development', 'UI/UX Design', 'Cloud & DevOps'];
+const serviceOptions = [
+  'UI/UX Design',
+  'Graphic Design',
+  'Web Development',
+  'Mobile App Development',
+  'Web-Based Applications',
+  'E-Commerce & Online Shops',
+  'Business Management Systems',
+  'Internal Company Portals',
+  'CRM & Dashboard Solutions',
+  'Custom SaaS Platforms',
+  'Workflow Automation',
+  'POS Systems',
+];
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -12,12 +25,12 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    projectType: 'Web Development',
+    projectType: 'UI/UX Design',
     message: '',
   });
 
   const resetForm = () => {
-    setFormData({ name: '', email: '', projectType: 'Web Development', message: '' });
+    setFormData({ name: '', email: '', projectType: 'UI/UX Design', message: '' });
     setError('');
   };
 
@@ -169,26 +182,27 @@ const Contact = () => {
                     onChange={(value) => setFormData({ ...formData, email: value })}
                   />
 
+
                   <div>
-                    <label className="mb-[5px] block text-[11px] font-normal leading-none text-black">
+                    <label htmlFor="serviceInterest" className="mb-[5px] block text-[11px] font-normal leading-none text-black">
                       Service Interest
                     </label>
-                    <div className="flex max-w-[426px] flex-wrap gap-[7px]">
+                    <select
+                      id="serviceInterest"
+                      value={formData.projectType}
+                      onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
+                      className="h-9 w-full max-w-[399px] rounded-[14px] border border-[#dedede] bg-white px-[11px] text-[12px] font-normal text-black outline-none focus:border-[#2367ed] sm:h-[27px] sm:text-[11px] appearance-none cursor-pointer"
+                      style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23808080' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
+                    >
                       {serviceOptions.map((service) => (
-                        <button
-                          key={service}
-                          type="button"
-                          onClick={() => setFormData({ ...formData, projectType: service })}
-                          className={`min-h-[29px] shrink-0 rounded-[13px] px-[10px] py-1 text-[10px] font-normal leading-tight text-black ${
-                            formData.projectType === service ? 'bg-[#e9e9e9]' : 'bg-[#f2f2f2]'
-                          }`}
-                        >
+                        <option key={service} value={service}>
                           {service}
-                        </button>
+                        </option>
                       ))}
-                    </div>
+                    </select>
                     <p className="mt-[7px] text-[9px] font-normal leading-none text-[#808080]">Select one</p>
                   </div>
+
 
                   <div>
                     <label htmlFor="message" className="mb-[5px] block text-[11px] font-normal leading-none text-black">
