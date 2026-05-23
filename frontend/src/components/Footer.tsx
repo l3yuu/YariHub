@@ -1,5 +1,5 @@
 import { FaLinkedinIn } from 'react-icons/fa6';
-import { SiFacebook, SiGithub, SiGmail, SiInstagram } from 'react-icons/si';
+import { SiFacebook, SiGithub, SiInstagram } from 'react-icons/si';
 
 const companyLinks = ['About Us', 'Careers', 'Blog', 'Documentation', 'Support'];
 
@@ -70,10 +70,10 @@ const Footer = () => {
         <FooterColumn title="Services" links={serviceLinks} />
 
         <div className="lg:pl-[4px]">
-          <h2 className="mb-3 text-[18px] font-extrabold uppercase leading-none tracking-[-0.01em] text-[#071d3c] sm:text-[20px] lg:mb-[14px]">
+          <h2 className="mb-3 text-[14px] font-extrabold uppercase leading-none tracking-[-0.01em] text-[#071d3c] sm:text-[15px] lg:mb-[14px]">
             Newsletter
           </h2>
-          <p className="mb-4 max-w-[300px] text-[16px] font-medium leading-[1.25] tracking-[0] text-[#071d3c] sm:text-[18px] lg:mb-[19px] lg:text-[19px] lg:leading-[1.05]">
+          <p className="mb-4 max-w-[300px] text-[13px] font-medium leading-[1.25] tracking-[0] text-[#071d3c] sm:text-[14px] lg:mb-[19px] lg:text-[14px] lg:leading-[1.05]">
             Stay updated with our latest news and tech insights.
           </p>
           <form className="flex h-[43px] w-full max-w-[320px] overflow-hidden rounded-[9px] bg-[#176ef2] shadow-[0_3px_8px_rgba(0,0,0,0.3)] lg:max-w-[239px]">
@@ -81,21 +81,27 @@ const Footer = () => {
               type="email"
               aria-label="Email address"
               placeholder="Email Address"
-              className="min-w-0 flex-1 bg-transparent px-3 text-[16px] font-normal text-white outline-none placeholder:text-white"
+              className="min-w-0 flex-1 bg-transparent px-3 text-[14px] font-normal text-white outline-none placeholder:text-white"
             />
             <button
               type="button"
               aria-label="Subscribe with Gmail"
-              className="grid h-[43px] w-[49px] shrink-0 place-items-center rounded-[9px] bg-white text-[28px] text-[#ea4335] transition-colors hover:bg-[#f4f7fb]"
+              className="grid h-[43px] w-[49px] shrink-0 place-items-center rounded-[9px] bg-white transition-colors hover:bg-[#f4f7fb]"
             >
-              <SiGmail />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="52 42 88 66" className="h-[24px] w-[32px]">
+                <path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6" />
+                <path fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15" />
+                <path fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2" />
+                <path fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92" />
+                <path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2" />
+              </svg>
             </button>
           </form>
         </div>
       </div>
 
       <div className="bg-[#176ef2] text-[#d9d9d9]">
-        <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-3 px-5 py-6 text-center text-[14px] font-normal leading-[1.35] sm:px-8 sm:text-[16px] md:flex-row md:flex-wrap md:text-left lg:flex-nowrap lg:px-[90px] lg:py-[33px] lg:text-[22px] lg:leading-none">
+        <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-3 px-5 py-6 text-center text-[12px] font-normal leading-[1.35] sm:px-8 sm:text-[13px] md:flex-row md:flex-wrap md:text-left lg:flex-nowrap lg:px-[90px] lg:py-[20px] lg:text-[14px] lg:leading-none">
           <p>© 2026 Company. All rights reserved.</p>
           <a href="#" className="transition-colors hover:text-white">
             Privacy Policy
@@ -119,10 +125,10 @@ type FooterColumnProps = {
 
 const FooterColumn = ({ title, links }: FooterColumnProps) => (
   <div>
-    <h2 className="mb-4 text-[18px] font-extrabold uppercase leading-none tracking-[-0.01em] text-[#071d3c] sm:text-[20px] lg:mb-[25px]">
+    <h2 className="mb-4 text-[14px] font-extrabold uppercase leading-none tracking-[-0.01em] text-[#071d3c] sm:text-[15px] lg:mb-[25px]">
       {title}
     </h2>
-    <ul className="space-y-3 text-[16px] font-medium leading-none tracking-[0] text-[#071d3c] sm:text-[18px] lg:space-y-[18px] lg:text-[19px]">
+    <ul className="space-y-3 text-[13px] font-medium leading-none tracking-[0] text-[#071d3c] sm:text-[14px] lg:space-y-[18px] lg:text-[14px]">
       {links.map((link) => (
         <li key={link}>
           <a href="#" className="transition-colors hover:text-[#176ef2]">
