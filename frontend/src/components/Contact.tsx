@@ -54,7 +54,7 @@ const Contact = () => {
       id="contact"
       className="relative overflow-hidden bg-white px-4 pb-20 pt-12 font-['Sora'] text-[#06122b] sm:px-6 sm:pb-28 sm:pt-14 lg:px-5 lg:pb-[150px] lg:pt-[58px]"
     >
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,#5f9cf6_0%,#5f9cf6_12%,#2368ed_42%,#8bb8f6_72%,#ffffff_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#0E6AF3_0%,#0E6AF3_12%,#2368ed_42%,#8bb8f6_72%,#ffffff_100%)]" />
 
       <div className="relative mx-auto max-w-[1000px]">
         <div className="mb-8 text-center text-white sm:mb-10 lg:mb-[43px]">
