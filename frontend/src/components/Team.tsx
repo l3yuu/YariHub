@@ -108,7 +108,7 @@ const Team = () => {
 
   return (
     <section id="team" className="relative -mb-px overflow-hidden bg-white pt-10 text-[#061f45] sm:pt-12 lg:pt-14">
-      <div className="pointer-events-none absolute inset-x-0 bottom-[-1px] h-[66%] bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(234,244,255,0.98)_26%,rgba(123,177,249,0.72)_58%,#5f9cf6_86%,#5f9cf6_100%)]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-[-1px] h-[66%] bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(234,244,255,0.98)_26%,rgba(14,106,243,0.72)_58%,#0E6AF3_86%,#0E6AF3_100%)]" />
       <div className="pointer-events-none absolute -left-[14%] bottom-[23%] h-[300px] w-[74%] rounded-[50%] bg-white/75 blur-[18px]" />
       <div className="pointer-events-none absolute right-[-12%] top-[24%] h-[390px] w-[56%] rounded-[50%] bg-[#e7f3ff] blur-[24px]" />
 
@@ -135,7 +135,7 @@ const Team = () => {
         transition={{ duration: 0.65, delay: 0.08 }}
         className="relative z-10 pb-14 sm:pb-16 lg:pb-20"
       >
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-10 bg-gradient-to-l from-[#6fa4f6]/70 via-[#6fa4f6]/25 to-transparent sm:w-20 lg:w-28" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-10 bg-gradient-to-l from-[#0E6AF3]/70 via-[#0E6AF3]/25 to-transparent sm:w-20 lg:w-28" />
 
         <div className="overflow-hidden py-4 sm:py-5">
           <div

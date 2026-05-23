@@ -60,7 +60,7 @@ const cardVariants: Variants = {
 const HowWeWork = () => {
   return (
     <section id="how-we-work" className="relative overflow-hidden bg-white text-[#00184A]">
-      <div className="absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-b from-[#BBD8FF] via-[#2D8CFF] to-[#006CF6]" />
+      <div className="absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-b from-transparent via-[#BBD8FF] to-[#006CF6]" />
 
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1440px] flex-col px-4 pb-16 pt-16 sm:px-6 lg:px-8">
         <motion.div
