@@ -1,6 +1,6 @@
 import { CheckCircle2, Loader2, Phone } from 'lucide-react';
 import { useState } from 'react';
-import { SiGmail, SiViber } from 'react-icons/si';
+import { SiViber } from 'react-icons/si';
 import API_URL from '../config';
 
 const serviceOptions = [
@@ -67,7 +67,7 @@ const Contact = () => {
       id="contact"
       className="relative overflow-hidden bg-white px-4 pb-20 pt-12 font-['Sora'] text-[#06122b] sm:px-6 sm:pb-28 sm:pt-14 lg:px-5 lg:pb-[150px] lg:pt-[58px]"
     >
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,#5f9cf6_0%,#5f9cf6_12%,#2368ed_42%,#8bb8f6_72%,#ffffff_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#0E6AF3_0%,#0E6AF3_12%,#2368ed_42%,#8bb8f6_72%,#ffffff_100%)]" />
 
       <div className="relative mx-auto max-w-[1000px]">
         <div className="mb-8 text-center text-white sm:mb-10 lg:mb-[43px]">
@@ -94,8 +94,14 @@ const Contact = () => {
 
             <ContactCard
               icon={
-                <span className="grid h-[45px] w-[45px] place-items-center rounded-[8px] border border-[#a8a8a8] bg-white text-[29px] text-[#ea4335]">
-                  <SiGmail />
+                <span className="grid h-[45px] w-[45px] place-items-center rounded-[8px] border border-[#a8a8a8] bg-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="52 42 88 66" className="h-[21px] w-[28px]">
+                    <path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6" />
+                    <path fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15" />
+                    <path fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2" />
+                    <path fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92" />
+                    <path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2" />
+                  </svg>
                 </span>
               }
               title="Email Us"

@@ -93,6 +93,8 @@ const Services = () => {
           className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-top lg:object-fill"
         />
 
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-white pointer-events-none z-5" />
+
         {/* ===== DESKTOP: original grid layout (lg+) ===== */}
         <div className="relative z-10 hidden lg:grid lg:min-h-[calc(100svh-4rem)] lg:grid-cols-[55%_45%] items-start gap-0 px-[clamp(1.25rem,4vw,4rem)] pt-[clamp(2rem,6vh,5rem)] pb-[clamp(2rem,4vh,3rem)]">
           <div className="flex flex-col items-start">
@@ -242,7 +244,7 @@ const Services = () => {
           </div>
 
           {/* White content zone */}
-          <div className="relative bg-white px-5 pt-6 pb-8 text-center sm:px-8">
+          <div className="relative bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_64px,rgba(255,255,255,1)_100%)] px-5 pt-16 pb-8 text-center sm:px-8">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeService.id}
