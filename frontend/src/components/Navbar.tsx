@@ -5,40 +5,25 @@ import { Link, useLocation } from 'react-router-dom';
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeHash, setActiveHash] = useState('');
   const location = useLocation();
 
   useEffect(() => {
-    const updateLocationState = () => {
-      setScrolled(window.scrollY > 10);
-      setActiveHash(window.location.hash);
-    };
-
-    updateLocationState();
     const onScroll = () => setScrolled(window.scrollY > 10);
-    const onHashChange = () => setActiveHash(window.location.hash);
+    onScroll();
     window.addEventListener('scroll', onScroll);
-    window.addEventListener('hashchange', onHashChange);
-
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('hashchange', onHashChange);
-    };
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const links = [
     { label: 'Home', href: '/' },
-    { label: 'About Us', href: '#about' },
-    { label: 'How We Work', href: '#how-we-work' },
+    { label: 'About Us', href: '/about' },
+    { label: 'How We Work', href: '/how-we-work' },
     { label: 'Services', href: '/services' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Contact', href: '/contact' },
   ];
 
   const isActive = (href: string) => {
-    if (href === '/' && location.pathname === '/' && activeHash === '') return true;
-    if (href.startsWith('/') && href !== '/' && location.pathname === href) return true;
-    if (href.startsWith('#') && activeHash === href) return true;
-    return false;
+    return location.pathname === href;
   };
 
   const isRoute = (href: string) => href.startsWith('/');
@@ -55,7 +40,6 @@ const Navbar = () => {
           {/* Logo */}
           <Link 
             to="/" 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="flex shrink-0 items-center"
           >
             <img src="/logo.png" alt="YariHub" className="h-9 sm:h-10 w-auto" />
@@ -94,13 +78,13 @@ const Navbar = () => {
 
           {/* Right actions */}
           <div className="hidden xl:flex items-center ml-auto">
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="inline-flex items-center px-6 py-2 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90"
               style={{ backgroundColor: '#162E93' }}
             >
               Get Started
-            </a>
+            </Link>
           </div>
 
           {/* Mobile: hamburger */}
@@ -145,14 +129,14 @@ const Navbar = () => {
               )
             )}
           <div className="pt-3 border-t border-gray-200 mt-3">
-            <a 
-              href="#contact" 
+            <Link 
+              to="/contact" 
               onClick={() => setIsOpen(false)}
               className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90"
               style={{ backgroundColor: '#162E93' }}
             >
               Get Started
-            </a>
+            </Link>
           </div>
         </div>
       )}
