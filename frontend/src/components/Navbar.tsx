@@ -17,13 +17,16 @@ const Navbar = () => {
   const links = [
     { label: 'Home', href: '/' },
     { label: 'About Us', href: '/about' },
-    { label: 'How We Work', href: '/how-we-work' },
+    { label: 'How We Work', href: '/#how-we-work' },
     { label: 'Services', href: '/services' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'Contact', href: '/#contact' },
   ];
 
   const isActive = (href: string) => {
-    return location.pathname === href;
+    if (href === '/') return location.pathname === '/' && !location.hash;
+    if (href.startsWith('/#')) return location.pathname === '/' && location.hash === href.substring(1);
+    if (href.startsWith('/') && !href.includes('#')) return location.pathname === href;
+    return false;
   };
 
   const isRoute = (href: string) => href.startsWith('/');
@@ -79,7 +82,7 @@ const Navbar = () => {
           {/* Right actions */}
           <div className="hidden xl:flex items-center ml-auto">
             <Link
-              to="/contact"
+              to="/#contact"
               className="inline-flex items-center px-6 py-2 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90"
               style={{ backgroundColor: '#162E93' }}
             >
@@ -130,7 +133,7 @@ const Navbar = () => {
             )}
           <div className="pt-3 border-t border-gray-200 mt-3">
             <Link 
-              to="/contact" 
+              to="/#contact" 
               onClick={() => setIsOpen(false)}
               className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90"
               style={{ backgroundColor: '#162E93' }}
