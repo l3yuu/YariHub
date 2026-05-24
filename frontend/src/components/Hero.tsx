@@ -45,14 +45,14 @@ const Hero = () => {
             variants={itemVariants}
             className="mb-5 inline-flex max-w-full items-center rounded-lg bg-[#0E6AF3] px-4 py-1.5 text-[11px] font-bold text-white shadow-sm sm:text-xs"
           >
-            Built for Filipino Innovators
+            Modern Web & Digital Solutions 
           </motion.div>
 
           <motion.h1
             variants={itemVariants}
             className="font-['Poppins',sans-serif] text-[clamp(2.75rem,8vw,5.75rem)] font-bold leading-[0.92] tracking-normal text-black"
           >
-            <span className="block">Freelance-first.</span>
+            <span className="block">We Craft Your Vision.</span>
             <span className="block text-[#0E6AF3]">Built to grow.</span>
           </motion.h1>
 
@@ -60,8 +60,7 @@ const Hero = () => {
             variants={itemVariants}
             className="mt-5 max-w-4xl text-balance text-sm leading-tight text-black sm:text-base md:text-lg"
           >
-            We build systems that work for you — empowering Filipino businesses and innovators with
-            premium digital infrastructure.
+            Crafting scalable digital experiences through modern web and custom software solutions.
           </motion.p>
         </motion.div>
       </div>

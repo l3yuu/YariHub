@@ -102,14 +102,13 @@ const AboutHero = () => {
               className="mt-1 font-['Poppins',sans-serif] text-[clamp(2.7rem,7vw,5rem)] font-bold leading-[0.98] tracking-normal text-[#0E6AF3]"
               style={{ translateZ: 56 }}
             >
-              We Craft Your Vision
+              Turning Ideas Into Scalable Solutions
             </motion.h2>
             <motion.p
               className="mt-4 max-w-2xl font-['Poppins',sans-serif] text-base font-normal leading-relaxed text-[#00184A] sm:text-xl"
               style={{ translateZ: 34 }}
             >
-              YariHub is a collaborative freelance studio based in the Philippines, focused on
-              delivering practical and well-crafted digital solutions.
+              YariHub is a digital solutions company focused on developing scalable web platforms, and custom software solutions for businesses, startups, and innovators. 
             </motion.p>
 
             <div className="mt-7 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-12">

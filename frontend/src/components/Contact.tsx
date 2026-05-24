@@ -172,7 +172,7 @@ const Contact = () => {
                   <Field
                     id="name"
                     label="Name"
-                    placeholder="John Doe"
+                    placeholder="Full Name"
                     requiredText="Required"
                     value={formData.name}
                     onChange={(value) => setFormData({ ...formData, name: value })}
@@ -182,7 +182,7 @@ const Contact = () => {
                     id="email"
                     label="Email"
                     type="email"
-                    placeholder="john@company.com"
+                    placeholder="email"
                     requiredText="Required"
                     value={formData.email}
                     onChange={(value) => setFormData({ ...formData, email: value })}
