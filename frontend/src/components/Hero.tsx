@@ -52,15 +52,15 @@ const Hero = () => {
             variants={itemVariants}
             className="font-['Poppins',sans-serif] text-[clamp(2.75rem,8vw,5.75rem)] font-bold leading-[0.92] tracking-normal text-black"
           >
-            <span className="block">We Craft Your Vision.</span>
-            <span className="block text-[#0E6AF3]">Built to grow.</span>
+            <span className="block">We Craft.</span>
+            <span className="block text-[#0E6AF3]">Your Vision.</span>
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
             className="mt-5 max-w-4xl text-balance text-sm leading-tight text-black sm:text-base md:text-lg"
           >
-            Crafting scalable digital experiences through modern web and custom software solutions.
+            CCrafting scalable digital experiences through modern web and custom software solutions. We help businesses and innovators transform ideas into reliable, high-performing systems designed for growth, efficiency, and long-term impact
           </motion.p>
         </motion.div>
       </div>

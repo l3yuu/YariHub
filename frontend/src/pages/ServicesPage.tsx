@@ -338,7 +338,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
                 ))}
               </ul>
               <Link
-                to="/contact"
+                to="/#contact"
                 className="mt-6 inline-flex items-center gap-1.5 rounded-lg bg-[#0E6AF3] px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-500/20 transition-all hover:bg-[#0D5DD3] hover:shadow-lg"
               >
                 Get a Quote <ArrowRight className="h-4 w-4" />
@@ -403,7 +403,7 @@ const ServicesPage = () => {
             className="mt-8 flex justify-center"
           >
             <Link
-              to="/contact"
+              to="/#contact"
               className="inline-flex items-center gap-2 rounded-xl bg-white px-7 py-3 text-sm font-bold text-[#0E6AF3] shadow-lg shadow-black/10 transition-all hover:shadow-xl hover:-translate-y-0.5"
             >
               Start a Project <ArrowRight className="h-4 w-4" />
@@ -483,7 +483,7 @@ const ServicesPage = () => {
           </p>
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4">
             <Link
-              to="/contact"
+              to="/#contact"
               className="inline-flex items-center gap-2 rounded-xl bg-white px-7 py-3 text-sm font-bold text-[#0E6AF3] shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5"
             >
               Get a Free Quote <ArrowRight className="h-4 w-4" />

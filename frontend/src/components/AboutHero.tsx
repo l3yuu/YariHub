@@ -5,12 +5,12 @@ import triangle from '../assets/triangle.png';
 
 const statCards = [
   {
-    value: '0',
+    value: '120',
     label: 'Clients Served',
     icon: Users,
   },
   {
-    value: '0',
+    value: '200',
     label: 'Projects Delivered',
     icon: Layers,
   },
@@ -80,16 +80,16 @@ const AboutHero = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-right-bottom"
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-fill"
         />
 
-        <div className="relative z-10 mx-auto flex min-h-[calc(100svh-4rem)] w-full max-w-7xl items-center px-4 py-16 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto flex min-h-[calc(100svh-4rem)] w-full max-w-7xl items-start pt-12 sm:pt-16 lg:pt-24 px-4 pb-16 sm:px-6 lg:px-8">
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.35 }}
-            className="w-full max-w-3xl"
+            className="w-full max-w-3xl lg:max-w-[65%]"
             style={{ transformPerspective: 1200, transformStyle: 'preserve-3d' }}
           >
             <motion.p
@@ -99,16 +99,16 @@ const AboutHero = () => {
               About Us
             </motion.p>
             <motion.h2
-              className="mt-1 font-['Poppins',sans-serif] text-[clamp(2.7rem,7vw,5rem)] font-bold leading-[0.98] tracking-normal text-[#0E6AF3]"
+              className="mt-1 font-['Poppins',sans-serif] text-[clamp(2.5rem,5vw,4rem)] font-bold leading-[1.1] tracking-normal text-[#0E6AF3]"
               style={{ translateZ: 56 }}
             >
-              Turning Ideas Into Scalable Solutions
+              We Craft Your Vision
             </motion.h2>
             <motion.p
-              className="mt-4 max-w-2xl font-['Poppins',sans-serif] text-base font-normal leading-relaxed text-[#00184A] sm:text-xl"
+              className="mt-4 max-w-xl font-['Poppins',sans-serif] text-base font-medium leading-relaxed text-[#00184A] sm:text-lg"
               style={{ translateZ: 34 }}
             >
-              YariHub is a digital solutions company focused on developing scalable web platforms, and custom software solutions for businesses, startups, and innovators. 
+              YariHub is a collaborative freelance studio based in the Philippines, focused on delivering practical and well-crafted digital solutions.
             </motion.p>
 
             <div className="mt-7 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-12">
@@ -118,7 +118,7 @@ const AboutHero = () => {
                   href="#portfolio"
                   whileHover={{ y: -4, rotateX: 8, scale: 1.04 }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex min-h-8 items-center justify-center rounded-xl bg-white px-4 py-2 text-xs font-bold text-[#0E6AF3] shadow-[0_2px_8px_rgba(0,0,0,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(14,106,243,0.25)]"
+                  className="inline-flex min-h-8 items-center justify-center rounded-full border border-gray-200 bg-white px-5 py-2 text-sm font-bold text-[#0E6AF3] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
                   style={{ transformPerspective: 900, transformStyle: 'preserve-3d' }}
                 >
                   {item}

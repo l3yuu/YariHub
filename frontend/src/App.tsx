@@ -3,8 +3,6 @@ import { useEffect } from 'react';
 import LandingPage from './pages/LandingPage';
 import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
-import HowWeWorkPage from './pages/HowWeWorkPage';
-import ContactPage from './pages/ContactPage';
 import LoginPage from './pages/LoginPage';
 import AdminLayout from './layouts/AdminLayout';
 import Dashboard from './pages/admin/Dashboard';
@@ -48,9 +46,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/how-we-work" element={<HowWeWorkPage />} />
           <Route path="/services" element={<ServicesPage />} />
-          <Route path="/contact" element={<ContactPage />} />
           <Route path="/login" element={<LoginPage />} />
           
           {/* Admin Routes */}

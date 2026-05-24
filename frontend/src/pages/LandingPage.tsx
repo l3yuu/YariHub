@@ -1,6 +1,10 @@
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
-
+import AboutPreview from '../components/AboutPreview';
+import HowWeWork from '../components/HowWeWork';
+import Services from '../components/Services';
+import Team from '../components/Team';
+import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import SoftAurora from '../components/SoftAurora';
 import Chatbot from '../components/Chatbot';
@@ -30,6 +34,11 @@ const LandingPage = () => {
         <div className="h-16" aria-hidden="true" />
         <main>
           <Hero />
+          <AboutPreview />
+          <HowWeWork />
+          <Services />
+          <Team />
+          <Contact />
         </main>
         <Footer />
       </div>
