@@ -26,7 +26,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-[calc(100svh-4rem)] overflow-hidden bg-white text-black">
+    <section id="home" className="relative min-h-[calc(100svh-4rem)] overflow-hidden bg-white text-black">
       <img
         src={hero1Bg}
         alt=""
