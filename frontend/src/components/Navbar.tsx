@@ -30,15 +30,18 @@ const Navbar = () => {
     { label: 'Home', href: '/' },
     { label: 'About Us', href: '#about' },
     { label: 'How We Work', href: '#how-we-work' },
-    { label: 'Services', href: '#services' },
+    { label: 'Services', href: '/services' },
     { label: 'Contact', href: '#contact' },
   ];
 
   const isActive = (href: string) => {
     if (href === '/' && location.pathname === '/' && activeHash === '') return true;
-    if (href !== '/' && activeHash === href) return true;
+    if (href.startsWith('/') && href !== '/' && location.pathname === href) return true;
+    if (href.startsWith('#') && activeHash === href) return true;
     return false;
   };
+
+  const isRoute = (href: string) => href.startsWith('/');
 
   return (
     <nav className={`fixed left-0 right-0 top-0 w-full z-50 transition-all duration-300 ${
@@ -60,19 +63,33 @@ const Navbar = () => {
 
           {/* Desktop nav links */}
           <div className="absolute left-1/2 hidden -translate-x-1/2 xl:flex items-center gap-10 2xl:gap-12">
-            {links.map(link => (
-              <a
-                key={link.label}
-                href={link.href}
-                className={`whitespace-nowrap text-sm font-medium transition-colors ${
-                  isActive(link.href)
-                    ? 'text-[#106FF4]'
-                    : 'text-[#162E93] hover:text-[#106FF4]'
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
+            {links.map(link =>
+              isRoute(link.href) ? (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className={`whitespace-nowrap text-sm font-medium transition-colors ${
+                    isActive(link.href)
+                      ? 'text-[#106FF4]'
+                      : 'text-[#162E93] hover:text-[#106FF4]'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={`whitespace-nowrap text-sm font-medium transition-colors ${
+                    isActive(link.href)
+                      ? 'text-[#106FF4]'
+                      : 'text-[#162E93] hover:text-[#106FF4]'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              )
+            )}
           </div>
 
           {/* Right actions */}
@@ -98,20 +115,35 @@ const Navbar = () => {
       {/* Mobile menu */}
       {isOpen && (
         <div className="xl:hidden bg-white border-t border-gray-200 px-4 pt-4 pb-6 space-y-1">
-          {links.map(link => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                isActive(link.href)
-                  ? 'text-[#106FF4] bg-blue-50'
-                  : 'text-[#162E93] hover:bg-gray-100'
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
+            {links.map(link =>
+              isRoute(link.href) ? (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                    isActive(link.href)
+                      ? 'text-[#106FF4] bg-blue-50'
+                      : 'text-[#162E93] hover:bg-gray-100'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                    isActive(link.href)
+                      ? 'text-[#106FF4] bg-blue-50'
+                      : 'text-[#162E93] hover:bg-gray-100'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              )
+            )}
           <div className="pt-3 border-t border-gray-200 mt-3">
             <a 
               href="#contact" 
