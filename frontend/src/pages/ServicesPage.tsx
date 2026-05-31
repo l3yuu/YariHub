@@ -241,25 +241,6 @@ const customServices: Service[] = [
     ],
     icon: <Workflow className="h-6 w-6" />,
   },
-  {
-    id: 'pos',
-    title: 'POS Systems',
-    shortDesc:
-      'Modern point-of-sale solutions designed to simplify transactions, inventory tracking, and business operations.',
-    longDesc:
-      'We develop modern Point-of-Sale (POS) systems that simplify transactions, inventory management, and business operations. Designed for retail stores, restaurants, and service businesses, our POS solutions provide reliable performance, real-time monitoring, and user-friendly interfaces that improve both customer experience and operational control.',
-    listTitle: 'Features may include:',
-    items: [
-      'Sales & Transaction Processing',
-      'Inventory Tracking',
-      'Receipt & Invoice Generation',
-      'Employee & User Management',
-      'Sales Analytics & Reporting',
-      'Multi-Device Compatibility',
-      'Secure Payment Integration',
-    ],
-    icon: <Monitor className="h-6 w-6" />,
-  },
 ];
 
 const categories = [
@@ -457,9 +438,11 @@ const ServicesPage = () => {
               </p>
             </div>
 
-            <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
+            <div className="flex flex-wrap gap-5 sm:gap-6 justify-center">
               {currentCategory.services.map((service, index) => (
-                <ServiceCard key={service.id} service={service} index={index} />
+                <div key={service.id} className="w-full sm:w-[calc(50%-12px)]">
+                  <ServiceCard service={service} index={index} />
+                </div>
               ))}
             </div>
           </motion.div>

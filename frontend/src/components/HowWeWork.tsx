@@ -1,34 +1,41 @@
 import { motion, type Variants } from 'framer-motion';
-import { Headphones, PenTool, Search, Rocket } from 'lucide-react';
+import { Compass, PenTool, RefreshCw, ShieldCheck, Rocket } from 'lucide-react';
 
 const steps = [
   {
-    title: 'Discovery call',
+    title: 'Discover & Align',
     description:
-      'We dive deep into your vision, target audience, and business goals to define the perfect technical roadmap.',
-    icon: Headphones,
+      'We start by understanding your goals, users, and challenges to define a clear product direction. Through collaborative planning and strategic discovery, we align technology with real business outcomes.',
+    icon: Compass,
     highlighted: true,
   },
   {
     title: 'Design & Prototype',
     description:
-      'We dive deep into your vision, target audience, and business goals to define the perfect technical roadmap.',
+      'We turn ideas into intuitive digital experiences through thoughtful UI/UX design and rapid prototyping. Every interaction is designed to be functional, engaging, and user-focused from the very beginning.',
     icon: PenTool,
     highlighted: false,
   },
   {
-    title: 'Discovery call',
+    title: 'Build & Iterate',
     description:
-      'We dive deep into your vision, target audience, and business goals to define the perfect technical roadmap.',
-    icon: Search,
+      'Using Agile development practices, we build scalable digital solutions through continuous testing, feedback, and iteration. Every sprint is focused on delivering measurable progress with clean, reliable engineering.',
+    icon: RefreshCw,
     highlighted: true,
   },
   {
-    title: 'Launch & Support',
+    title: 'Test & Deploy',
     description:
-      'We dive deep into your vision, target audience, and business goals to define the perfect technical roadmap.',
-    icon: Rocket,
+      'We validate every detail through testing, optimization, and quality assurance to ensure your product is secure, reliable, and ready for launch.',
+    icon: ShieldCheck,
     highlighted: false,
+  },
+  {
+    title: 'Launch & Grow',
+    description:
+      'We launch with confidence and continue supporting your product as it evolves. From optimization to long-term maintenance, we help your platform scale, adapt, and grow with your business.',
+    icon: Rocket,
+    highlighted: true,
   },
 ];
 
@@ -75,11 +82,11 @@ const HowWeWork = () => {
             className="font-['Poppins',sans-serif] text-[clamp(2.5rem,5vw,4.5rem)] font-bold leading-tight tracking-normal text-[#00184A]"
             style={{ translateZ: 52 }}
           >
-            Engineered for Results
+            How We Work
           </motion.h2>
         </motion.div>
 
-        <div className="mt-10 grid gap-5 sm:mt-16 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4 lg:gap-6">
+        <div className="mt-10 grid gap-5 sm:mt-16 sm:grid-cols-2 lg:mt-20 lg:grid-cols-5 lg:gap-5">
           {steps.map((step, index) => {
             const Icon = step.icon;
             const cardClasses = step.highlighted
@@ -151,8 +158,7 @@ const HowWeWork = () => {
           className="mx-auto mt-16 max-w-4xl text-center font-['Poppins',sans-serif] text-[clamp(1.15rem,2.3vw,1.6rem)] font-normal leading-tight text-white"
           style={{ textShadow: '0 1px 2px rgba(0,24,74,0.22)' }}
         >
-          A transparent, structured methodology designed to transform your ambitious ideas into
-          industry-leading digital products.
+          A collaborative approach designed to turn ambitious ideas into scalable digital solutions.
         </motion.p>
       </div>
     </section>
