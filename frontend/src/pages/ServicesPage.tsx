@@ -13,7 +13,7 @@ import {
   BarChart3,
   Cloud,
   Workflow,
-  Monitor,
+ // Monitor, //
   ChevronDown,
   ArrowRight,
   ArrowLeft,
