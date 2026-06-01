@@ -1,35 +1,47 @@
+import { Link } from 'react-router-dom';
 import { FaLinkedinIn } from 'react-icons/fa6';
 import { SiFacebook, SiGithub, SiInstagram } from 'react-icons/si';
 
-const companyLinks = ['About Us', 'Careers', 'Blog', 'Documentation', 'Support'];
+const companyLinks = [
+  { label: 'About Us', href: '/about' },
+  { label: 'Careers', href: '/about' },
+  { label: 'Blog', href: '/' },
+  { label: 'Documentation', href: '/' },
+  { label: 'Support', href: '/#contact' },
+];
 
-const serviceLinks = ['Web Development', 'Mobile Apps', 'System Dev', 'UI/UX Design', 'Consulting'];
+const serviceLinks = [
+  { label: 'Web Development', href: '/services' },
+  { label: 'Mobile Apps', href: '/services' },
+  { label: 'System Dev', href: '/services' },
+  { label: 'UI/UX Design', href: '/services' },
+  { label: 'Consulting', href: '/services' },
+];
 
 const socialLinks = [
   {
     label: 'Instagram',
     href: 'https://www.instagram.com/yarihubitsolutions/',
-    icon: <SiInstagram className="h-[30px] w-[30px]" />,
-    className:
-      'text-white bg-[radial-gradient(circle_at_30%_105%,#fdf497_0%,#fdf497_5%,#fd5949_45%,#d6249f_60%,#285aeb_90%)]',
+    icon: <SiInstagram className="h-6 w-6" />,
+    hoverColor: 'hover:text-[#e1306c]',
   },
   {
     label: 'LinkedIn',
-    href: '#',
-    icon: <FaLinkedinIn className="h-[30px] w-[30px]" />,
-    className: 'text-[#0a66c2] bg-white',
+    href: 'https://www.linkedin.com/company/yarihub',
+    icon: <FaLinkedinIn className="h-6 w-6" />,
+    hoverColor: 'hover:text-[#0a66c2]',
   },
   {
     label: 'GitHub',
-    href: '#',
-    icon: <SiGithub className="h-[33px] w-[33px]" />,
-    className: 'text-black bg-white',
+    href: 'https://github.com/l3yuu/YariHub',
+    icon: <SiGithub className="h-[25px] w-[25px]" />,
+    hoverColor: 'hover:text-[#24292e]',
   },
   {
     label: 'Facebook',
-    href: 'https://www.facebook.com/share/1CDKeAWiSe/',
-    icon: <SiFacebook className="h-[27px] w-[27px]" />,
-    className: 'text-[#1877f2] bg-white',
+    href: 'https://www.facebook.com/profile.php?id=61589468530687',
+    icon: <SiFacebook className="h-6 w-6" />,
+    hoverColor: 'hover:text-[#1877f2]',
   },
 ];
 
@@ -39,28 +51,26 @@ const Footer = () => {
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-5 py-12 sm:grid-cols-2 sm:px-8 sm:py-14 md:gap-12 lg:grid-cols-[1.45fr_0.7fr_0.75fr_1fr] lg:gap-14 lg:px-[50px] lg:pb-[58px] lg:pt-[154px]">
         <div className="flex min-h-0 flex-col justify-between gap-8 sm:col-span-2 lg:col-span-1 lg:min-h-[268px] lg:gap-10">
           <div>
-            <a href="#" aria-label="Yari Hub home" className="inline-flex w-fit">
+            <Link to="/" aria-label="Yari Hub home" className="inline-flex w-fit">
               <img src="/logo.png" alt="Yari Hub IT Solutions" className="h-auto w-[170px] sm:w-[190px] lg:w-[205px]" />
-            </a>
+            </Link>
             <p className="mt-5 max-w-[420px] font-['Sora'] text-[14px] font-extralight leading-[20px] tracking-[0] text-[#071d3c] sm:text-[15px] lg:max-w-[342px]">
               YariHub is a collaborative freelance studio based in the Philippines, focused on
               delivering practical and well-crafted digital solutions.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 lg:gap-[22px] lg:pl-[15px]">
+          <div className="flex flex-wrap items-center gap-6 lg:pl-[15px]">
             {socialLinks.map((social) => (
               <a
                 key={social.label}
                 href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={social.label}
-                className="grid h-[48px] w-[52px] place-items-center rounded-[8px] border border-[#cfd2d7] bg-[#e8e8e8] shadow-[inset_0_0_0_3px_#d9d9d9] transition-transform hover:-translate-y-0.5 sm:h-[53px] sm:w-[58px]"
+                className={`text-[#071d3c]/60 transition-all duration-300 hover:-translate-y-1 ${social.hoverColor}`}
               >
-                <span
-                  className={`grid h-[34px] w-[34px] place-items-center overflow-hidden rounded-[7px] sm:h-[36px] sm:w-[36px] ${social.className}`}
-                >
-                  {social.icon}
-                </span>
+                {social.icon}
               </a>
             ))}
           </div>
@@ -102,15 +112,15 @@ const Footer = () => {
 
       <div className="bg-[#176ef2] text-[#d9d9d9]">
         <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-3 px-5 py-6 text-center text-[12px] font-normal leading-[1.35] sm:px-8 sm:text-[13px] md:flex-row md:flex-wrap md:text-left lg:flex-nowrap lg:px-[90px] lg:py-[20px] lg:text-[14px] lg:leading-none">
-          <p>© 2026 Company. All rights reserved.</p>
+          <p>© 2026 YariHub. All rights reserved.</p>
           <a href="#" className="transition-colors hover:text-white">
             Privacy Policy
           </a>
           <a href="#" className="transition-colors hover:text-white">
             Terms of Service
           </a>
-          <a href="mailto:support@company.com" className="transition-colors hover:text-white">
-            Support: support@company.com
+          <a href="mailto:yarihubitsolutions@gmail.com" className="transition-colors hover:text-white">
+            Support: yarihubitsolutions@gmail.com
           </a>
         </div>
       </div>
@@ -120,7 +130,7 @@ const Footer = () => {
 
 type FooterColumnProps = {
   title: string;
-  links: string[];
+  links: { label: string; href: string }[];
 };
 
 const FooterColumn = ({ title, links }: FooterColumnProps) => (
@@ -130,10 +140,16 @@ const FooterColumn = ({ title, links }: FooterColumnProps) => (
     </h2>
     <ul className="space-y-3 text-[13px] font-medium leading-none tracking-[0] text-[#071d3c] sm:text-[14px] lg:space-y-[18px] lg:text-[14px]">
       {links.map((link) => (
-        <li key={link}>
-          <a href="#" className="transition-colors hover:text-[#176ef2]">
-            {link}
-          </a>
+        <li key={link.label}>
+          {link.href.startsWith('/#') || link.href.startsWith('mailto:') ? (
+            <a href={link.href} className="transition-colors hover:text-[#176ef2]">
+              {link.label}
+            </a>
+          ) : (
+            <Link to={link.href} className="transition-colors hover:text-[#176ef2]">
+              {link.label}
+            </Link>
+          )}
         </li>
       ))}
     </ul>

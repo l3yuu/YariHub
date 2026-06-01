@@ -60,7 +60,7 @@ const Hero = () => {
             variants={itemVariants}
             className="mt-5 max-w-4xl text-balance text-sm leading-tight text-black sm:text-base md:text-lg"
           >
-            CCrafting scalable digital experiences through modern web and custom software solutions. We help businesses and innovators transform ideas into reliable, high-performing systems designed for growth, efficiency, and long-term impact
+            Crafting scalable digital experiences through modern web and custom software solutions. We help businesses and innovators transform ideas into reliable, high-performing systems designed for growth, efficiency, and long-term impact
           </motion.p>
         </motion.div>
       </div>

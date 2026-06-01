@@ -15,7 +15,6 @@ const serviceOptions = [
   'CRM & Dashboard Solutions',
   'Custom SaaS Platforms',
   'Workflow Automation',
-  'POS Systems',
 ];
 
 const Contact = () => {
@@ -28,14 +27,75 @@ const Contact = () => {
     projectType: 'UI/UX Design',
     message: '',
   });
+  const [validationErrors, setValidationErrors] = useState({
+    email: '',
+    message: '',
+  });
 
   const resetForm = () => {
     setFormData({ name: '', email: '', projectType: 'UI/UX Design', message: '' });
+    setValidationErrors({ email: '', message: '' });
     setError('');
+  };
+
+  const handleEmailChange = (val: string) => {
+    setFormData((prev) => ({ ...prev, email: val }));
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (val && !emailRegex.test(val)) {
+      setValidationErrors((prev) => ({ ...prev, email: 'Please enter a valid email address' }));
+    } else {
+      setValidationErrors((prev) => ({ ...prev, email: '' }));
+    }
+  };
+
+  const handleMessageChange = (val: string) => {
+    const newlineCount = (val.match(/\n/g) || []).length;
+    if (newlineCount > 2) {
+      setValidationErrors((prev) => ({ ...prev, message: 'Maximum 2 paragraph breaks allowed' }));
+    } else {
+      setValidationErrors((prev) => ({ ...prev, message: '' }));
+    }
+    setFormData((prev) => ({ ...prev, message: val }));
+  };
+
+  const handleMessageKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter') {
+      const newlineCount = (formData.message.match(/\n/g) || []).length;
+      if (newlineCount >= 2) {
+        e.preventDefault();
+        setValidationErrors((prev) => ({ ...prev, message: 'Maximum 2 paragraph breaks allowed' }));
+      }
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Check validation errors
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let hasError = false;
+    let emailError = '';
+    let messageError = '';
+
+    if (!emailRegex.test(formData.email)) {
+      emailError = 'Please enter a valid email address';
+      hasError = true;
+    }
+
+    const newlineCount = (formData.message.match(/\n/g) || []).length;
+    if (newlineCount > 2) {
+      messageError = 'Maximum 2 paragraph breaks allowed';
+      hasError = true;
+    }
+
+    if (hasError) {
+      setValidationErrors({
+        email: emailError,
+        message: messageError,
+      });
+      return;
+    }
+
     setLoading(true);
     setError('');
 
@@ -185,7 +245,8 @@ const Contact = () => {
                     placeholder="email"
                     requiredText="Required"
                     value={formData.email}
-                    onChange={(value) => setFormData({ ...formData, email: value })}
+                    onChange={handleEmailChange}
+                    error={validationErrors.email}
                   />
 
 
@@ -214,18 +275,27 @@ const Contact = () => {
                     <label htmlFor="message" className="mb-[5px] block text-[11px] font-normal leading-none text-black">
                       Message
                     </label>
-                    <input
+                    <textarea
                       id="message"
                       required
                       maxLength={500}
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={(e) => handleMessageChange(e.target.value)}
+                      onKeyDown={handleMessageKeyDown}
                       placeholder="Tell us about your project..."
-                      className="h-9 w-full max-w-[399px] rounded-[14px] border border-[#dedede] px-[11px] text-[12px] font-normal text-black outline-none placeholder:text-[#8a8a8a] focus:border-[#2367ed] sm:h-[27px] sm:text-[11px]"
+                      className={`w-full max-w-[399px] rounded-[14px] border px-[11px] py-[8px] text-[12px] font-normal text-black outline-none placeholder:text-[#8a8a8a] sm:text-[11px] min-h-[80px] resize-y ${
+                        validationErrors.message ? 'border-red-500 focus:border-red-500' : 'border-[#dedede] focus:border-[#2367ed]'
+                      }`}
                     />
-                    <p className="mt-[8px] text-[9px] font-normal leading-none text-[#808080]">
-                      Maximum 500 characters
-                    </p>
+                    {validationErrors.message ? (
+                      <p className="mt-[8px] text-[9px] font-medium leading-none text-red-500">
+                        {validationErrors.message}
+                      </p>
+                    ) : (
+                      <p className="mt-[8px] text-[9px] font-normal leading-none text-[#808080]">
+                        Maximum 500 characters & 2 paragraph breaks
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -284,9 +354,10 @@ type FieldProps = {
   value: string;
   onChange: (value: string) => void;
   type?: string;
+  error?: string;
 };
 
-const Field = ({ id, label, placeholder, requiredText, value, onChange, type = 'text' }: FieldProps) => (
+const Field = ({ id, label, placeholder, requiredText, value, onChange, type = 'text', error }: FieldProps) => (
   <div>
     <label htmlFor={id} className="mb-[5px] block text-[11px] font-normal leading-none text-black">
       {label}
@@ -298,9 +369,15 @@ const Field = ({ id, label, placeholder, requiredText, value, onChange, type = '
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
-      className="h-9 w-full max-w-[399px] rounded-[14px] border border-[#dedede] px-[11px] text-[12px] font-normal text-black outline-none placeholder:text-[#8a8a8a] focus:border-[#2367ed] sm:h-[27px] sm:text-[11px]"
+      className={`h-9 w-full max-w-[399px] rounded-[14px] border px-[11px] text-[12px] font-normal text-black outline-none placeholder:text-[#8a8a8a] sm:h-[27px] sm:text-[11px] ${
+        error ? 'border-red-500 focus:border-red-500' : 'border-[#dedede] focus:border-[#2367ed]'
+      }`}
     />
-    <p className="mt-[8px] text-[9px] font-normal leading-none text-[#808080]">{requiredText}</p>
+    {error ? (
+      <p className="mt-[8px] text-[9px] font-medium leading-none text-red-500">{error}</p>
+    ) : (
+      <p className="mt-[8px] text-[9px] font-normal leading-none text-[#808080]">{requiredText}</p>
+    )}
   </div>
 );
 

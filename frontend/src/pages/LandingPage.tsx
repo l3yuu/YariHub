@@ -3,7 +3,7 @@ import Hero from '../components/Hero';
 import AboutPreview from '../components/AboutPreview';
 import HowWeWork from '../components/HowWeWork';
 import Services from '../components/Services';
-import Team from '../components/Team';
+// import Team from '../components/Team'; //
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import SoftAurora from '../components/SoftAurora';
@@ -37,7 +37,7 @@ const LandingPage = () => {
           <AboutPreview />
           <HowWeWork />
           <Services />
-          <Team />
+          {/* <Team /> */}
           <Contact />
         </main>
         <Footer />
