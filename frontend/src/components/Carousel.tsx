@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 // replace icons with your own if needed
 import { FiCircle, FiCode, FiFileText, FiLayers, FiLayout } from 'react-icons/fi';
@@ -67,19 +67,19 @@ function CarouselItem({ item, index, itemWidth, round, trackItemOffset, x, trans
         glowRadius={30}
         colors={item.colors || ['#3b82f6', '#8b5cf6', '#6366f1']}
       >
-        <div className={`flex flex-col h-full w-full items-center justify-center text-center p-8 ${
+        <div className={`flex flex-col h-full w-full items-center justify-center text-center p-5 sm:p-8 ${
           round ? '' : 'bg-white/5 dark:bg-slate-800/10'
         }`}>
-          <div className={`${round ? 'p-0 m-0' : 'mb-8'}`}>
-            <span className={`flex h-[80px] w-[80px] items-center justify-center rounded-3xl ${item.lightBg || 'bg-blue-50'} ${item.darkBg || 'dark:bg-blue-900/30'} shadow-inner`}>
-              <div className={`w-14 h-14 bg-gradient-to-br ${item.gradient || 'from-blue-500 to-cyan-500'} rounded-2xl flex items-center justify-center shadow-lg`}>
+          <div className={`${round ? 'p-0 m-0' : 'mb-5 sm:mb-8'}`}>
+            <span className={`flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-2xl sm:rounded-3xl ${item.lightBg || 'bg-blue-50'} ${item.darkBg || 'dark:bg-blue-900/30'} shadow-inner`}>
+              <div className={`w-11 h-11 sm:w-14 sm:h-14 bg-gradient-to-br ${item.gradient || 'from-blue-500 to-cyan-500'} rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg`}>
                 {item.icon}
               </div>
             </span>
           </div>
-          <div className="px-12 pb-10">
-            <div className="mb-4 font-black text-4xl text-slate-900 dark:text-white tracking-tighter leading-none">{item.title}</div>
-            <p className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed font-medium max-w-md mx-auto">{item.description}</p>
+          <div className="px-3 sm:px-8 lg:px-12 pb-8 sm:pb-10">
+            <div className="mb-3 sm:mb-4 font-black text-2xl sm:text-3xl lg:text-4xl text-slate-900 dark:text-white tracking-tight leading-tight">{item.title}</div>
+            <p className="text-sm sm:text-base lg:text-lg text-slate-500 dark:text-slate-400 leading-relaxed font-medium max-w-md mx-auto">{item.description}</p>
           </div>
         </div>
       </BorderGlow>
@@ -97,7 +97,8 @@ export default function Carousel({
   round = false
 }: any) {
   const containerPadding = 0;
-  const itemWidth = baseWidth - containerPadding * 2;
+  const [containerWidth, setContainerWidth] = useState(baseWidth);
+  const itemWidth = containerWidth - containerPadding * 2;
   const trackItemOffset = itemWidth + GAP;
   const itemsForRender = useMemo(() => {
     if (!loop) return items;
@@ -112,6 +113,23 @@ export default function Carousel({
   const [isAnimating, setIsAnimating] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const updateWidth = () => {
+      const measuredWidth = container.getBoundingClientRect().width;
+      setContainerWidth(Math.max(0, Math.round(measuredWidth)));
+    };
+
+    updateWidth();
+    const resizeObserver = new ResizeObserver(updateWidth);
+    resizeObserver.observe(container);
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
   useEffect(() => {
     if (pauseOnHover && containerRef.current) {
       const container = containerRef.current;
@@ -218,6 +236,12 @@ export default function Carousel({
 
   const activeIndex =
     items.length === 0 ? 0 : loop ? (position - 1 + items.length) % items.length : Math.min(position, items.length - 1);
+  const carouselStyle = {
+    width: 'min(100%, var(--carousel-base-width))',
+    maxWidth: 'calc(100vw - 2rem)',
+    '--carousel-base-width': `${baseWidth}px`,
+    ...(round && { height: `${baseWidth}px` })
+  } as CSSProperties & { '--carousel-base-width': string };
 
   return (
     <div
@@ -225,10 +249,7 @@ export default function Carousel({
       className={`relative overflow-hidden ${
         round ? 'rounded-full border border-white' : 'rounded-[40px] border border-slate-200 dark:border-slate-700/60'
       }`}
-      style={{
-        width: `${baseWidth}px`,
-        ...(round && { height: `${baseWidth}px` })
-      }}
+      style={carouselStyle}
     >
       <motion.div
         className="flex"

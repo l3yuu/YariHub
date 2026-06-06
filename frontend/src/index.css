@@ -163,10 +163,116 @@ body {
   font-family: var(--font-sans);
   background-color: var(--bg);
   color: var(--text);
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+<<<<<<< HEAD
+=======
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+/* ── Dot-grid hero background ──────────────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.dark .dot-grid {
+  background-image: radial-gradient(circle, #1e293b 1px, transparent 1px);
+}
+
+.hero-circuit-pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-circuit-pattern::before,
+.hero-circuit-pattern::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 22%;
+  width: min(34vw, 360px);
+  opacity: 0.9;
+  background-image:
+    linear-gradient(to bottom, rgba(14, 106, 243, 0.08), rgba(14, 106, 243, 0.08)),
+    linear-gradient(to bottom, rgba(14, 106, 243, 0.08), rgba(14, 106, 243, 0.08)),
+    linear-gradient(to bottom, rgba(14, 106, 243, 0.08), rgba(14, 106, 243, 0.08)),
+    linear-gradient(to bottom, rgba(14, 106, 243, 0.08), rgba(14, 106, 243, 0.08)),
+    linear-gradient(to bottom, rgba(14, 106, 243, 0.08), rgba(14, 106, 243, 0.08)),
+    linear-gradient(to right, rgba(14, 106, 243, 0.08), rgba(14, 106, 243, 0.08)),
+    linear-gradient(to right, rgba(14, 106, 243, 0.08), rgba(14, 106, 243, 0.08)),
+    linear-gradient(to right, rgba(14, 106, 243, 0.08), rgba(14, 106, 243, 0.08));
+  background-repeat: no-repeat;
+  background-size:
+    3px 78%,
+    3px 62%,
+    3px 52%,
+    3px 70%,
+    3px 46%,
+    58px 3px,
+    46px 3px,
+    70px 3px;
+  background-position:
+    8% 18%,
+    18% 8%,
+    31% 26%,
+    47% 12%,
+    66% 20%,
+    8% 64%,
+    18% 52%,
+    47% 72%;
+}
+
+.hero-circuit-pattern::before {
+  left: 0;
+}
+
+.hero-circuit-pattern::after {
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.hero-blue-fog {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: min(34svh, 280px);
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center bottom, rgba(14, 106, 243, 0.95) 0%, rgba(14, 106, 243, 0.58) 42%, transparent 76%),
+    linear-gradient(to top, rgba(14, 106, 243, 0.95), rgba(14, 106, 243, 0.35) 44%, transparent 88%);
+}
+
+@media (max-width: 640px) {
+  .hero-circuit-pattern::before,
+  .hero-circuit-pattern::after {
+    width: 46vw;
+    opacity: 0.55;
+  }
+
+  .hero-blue-fog {
+    height: 24svh;
+  }
+}
+
+/* ── Gradient text utility ─────────────────────────────────────── */
+>>>>>>> origin/main
 .gradient-text {
   color: var(--accent);
 }
@@ -178,3 +284,34 @@ body {
   box-shadow: 0 0 0 1px #2563eb33, 0 20px 40px -12px #2563eb22;
   transform: translateY(-2px);
 }
+<<<<<<< HEAD
+=======
+.dark .card-hover:hover {
+  box-shadow: 0 0 0 1px #2563eb55, 0 20px 40px -12px #2563eb33;
+}
+
+@keyframes team-carousel-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.team-carousel-track {
+  animation: team-carousel-right 34s linear infinite;
+}
+
+.team-carousel-track:hover,
+.team-carousel-track:has(.team-carousel-card:hover) {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-carousel-track {
+    animation: none;
+    transform: translateX(0);
+  }
+}
+>>>>>>> origin/main
